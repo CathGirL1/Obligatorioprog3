@@ -1,0 +1,818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="vozDelEsteBsdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="cedula" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clima">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="temperatura" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="icono" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contenido" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="cedulaCliente" Type="int" Nullable="false" />
+          <Property Name="idPrograma" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="biografia" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cotizacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="tipoMoneda" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="valor" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="datosCliente_dependenciaCedula">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="int" Nullable="false" />
+          <Property Name="nombreReal" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="horario_programa">
+          <Key>
+            <PropertyRef Name="idPrograma" />
+            <PropertyRef Name="dia" />
+            <PropertyRef Name="horaInicio" />
+            <PropertyRef Name="horaFinal" />
+          </Key>
+          <Property Name="idPrograma" Type="int" Nullable="false" />
+          <Property Name="dia" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="horaFinal" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="invitado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="noticia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contenido" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="fechaPublicacion" Type="date" Nullable="false" />
+          <Property Name="imagen" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="patrocinador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="plann" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="programa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="imagen" Type="varchar" MaxLength="800" />
+        </EntityType>
+        <EntityType Name="programa_conductor">
+          <Key>
+            <PropertyRef Name="cedulaConductor" />
+            <PropertyRef Name="idPrograma" />
+          </Key>
+          <Property Name="cedulaConductor" Type="int" Nullable="false" />
+          <Property Name="idPrograma" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="programa_patrocinador">
+          <Key>
+            <PropertyRef Name="id_Patrocinador" />
+            <PropertyRef Name="id_Programa" />
+          </Key>
+          <Property Name="id_Patrocinador" Type="int" Nullable="false" />
+          <Property Name="id_Programa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="rol_permiso">
+          <Key>
+            <PropertyRef Name="id_rol" />
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="25" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="20" />
+          <Property Name="id_rol" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'fkCedulaCliente' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="fkCedulaCliente" />-->
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'fkCliente' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="fkCliente" />-->
+        <Association Name="fkConductorCedula">
+          <End Role="conductor" Type="Self.conductor" Multiplicity="1" />
+          <End Role="programa_conductor" Type="Self.programa_conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="programa_conductor">
+              <PropertyRef Name="cedulaConductor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="fkIdCliente" />-->
+        <Association Name="fkIdDPrograma">
+          <End Role="programa" Type="Self.programa" Multiplicity="1" />
+          <End Role="horario_programa" Type="Self.horario_programa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="horario_programa">
+              <PropertyRef Name="idPrograma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkIdPrograma">
+          <End Role="programa" Type="Self.programa" Multiplicity="1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idPrograma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkkIddPrograma">
+          <End Role="programa" Type="Self.programa" Multiplicity="1" />
+          <End Role="programa_patrocinador" Type="Self.programa_patrocinador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="programa_patrocinador">
+              <PropertyRef Name="id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkPatrocinadorId">
+          <End Role="patrocinador" Type="Self.patrocinador" Multiplicity="1" />
+          <End Role="programa_patrocinador" Type="Self.programa_patrocinador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patrocinador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="programa_patrocinador">
+              <PropertyRef Name="id_Patrocinador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkProgramaId">
+          <End Role="programa" Type="Self.programa" Multiplicity="1" />
+          <End Role="programa_conductor" Type="Self.programa_conductor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="programa_conductor">
+              <PropertyRef Name="idPrograma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkRolPermiso_permiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="1" />
+          <End Role="rol_permiso" Type="Self.rol_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="rol_permiso">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkRolPermiso_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="rol_permiso" Type="Self.rol_permiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="rol_permiso">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkUsuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkUsuario_invitado">
+          <End Role="invitado" Type="Self.invitado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="invitado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkUsuario_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="vozDelEsteBsdModelStoreContainer">
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clima" EntityType="Self.clima" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comentario" EntityType="Self.comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conductor" EntityType="Self.conductor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cotizacion" EntityType="Self.cotizacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="datosCliente_dependenciaCedula" EntityType="Self.datosCliente_dependenciaCedula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="horario_programa" EntityType="Self.horario_programa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invitado" EntityType="Self.invitado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="noticia" EntityType="Self.noticia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patrocinador" EntityType="Self.patrocinador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="programa" EntityType="Self.programa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="programa_conductor" EntityType="Self.programa_conductor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="programa_patrocinador" EntityType="Self.programa_patrocinador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol_permiso" EntityType="Self.rol_permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fkConductorCedula" Association="Self.fkConductorCedula">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="programa_conductor" EntitySet="programa_conductor" />
+          </AssociationSet>
+          <AssociationSet Name="fkIdDPrograma" Association="Self.fkIdDPrograma">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="horario_programa" EntitySet="horario_programa" />
+          </AssociationSet>
+          <AssociationSet Name="fkIdPrograma" Association="Self.fkIdPrograma">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fkkIddPrograma" Association="Self.fkkIddPrograma">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="programa_patrocinador" EntitySet="programa_patrocinador" />
+          </AssociationSet>
+          <AssociationSet Name="fkPatrocinadorId" Association="Self.fkPatrocinadorId">
+            <End Role="patrocinador" EntitySet="patrocinador" />
+            <End Role="programa_patrocinador" EntitySet="programa_patrocinador" />
+          </AssociationSet>
+          <AssociationSet Name="fkProgramaId" Association="Self.fkProgramaId">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="programa_conductor" EntitySet="programa_conductor" />
+          </AssociationSet>
+          <AssociationSet Name="fkRolPermiso_permiso" Association="Self.fkRolPermiso_permiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="rol_permiso" EntitySet="rol_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="fkRolPermiso_rol" Association="Self.fkRolPermiso_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="rol_permiso" EntitySet="rol_permiso" />
+          </AssociationSet>
+          <AssociationSet Name="fkUsuario" Association="Self.fkUsuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fkUsuario_invitado" Association="Self.fkUsuario_invitado">
+            <End Role="invitado" EntitySet="invitado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fkUsuario_rol" Association="Self.fkUsuario_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vozDelEsteBsdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fkUsuario" FromRole="cliente" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="clima">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="temperatura" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="icono" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="comentario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contenido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="cedulaCliente" Type="Int32" Nullable="false" />
+          <Property Name="idPrograma" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="programa" Relationship="Self.fkIdPrograma" FromRole="comentario" ToRole="programa" />
+        </EntityType>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="biografia" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="programa" Relationship="Self.programa_conductor" FromRole="conductor" ToRole="programa" />
+        </EntityType>
+        <EntityType Name="cotizacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tipoMoneda" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="datosCliente_dependenciaCedula">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="nombreReal" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="horario_programa">
+          <Key>
+            <PropertyRef Name="idPrograma" />
+            <PropertyRef Name="dia" />
+            <PropertyRef Name="horaInicio" />
+            <PropertyRef Name="horaFinal" />
+          </Key>
+          <Property Name="idPrograma" Type="Int32" Nullable="false" />
+          <Property Name="dia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="horaInicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horaFinal" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="programa" Relationship="Self.fkIdDPrograma" FromRole="horario_programa" ToRole="programa" />
+        </EntityType>
+        <EntityType Name="invitado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="usuario" Relationship="Self.fkUsuario_invitado" FromRole="invitado" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="noticia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaPublicacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="imagen" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="patrocinador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="plann" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="programa" Relationship="Self.programa_patrocinador" FromRole="patrocinador" ToRole="programa" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="rol" Relationship="Self.rol_permiso" FromRole="permiso" ToRole="rol" />
+        </EntityType>
+        <EntityType Name="programa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="comentario" Relationship="Self.fkIdPrograma" FromRole="programa" ToRole="comentario" />
+          <NavigationProperty Name="horario_programa" Relationship="Self.fkIdDPrograma" FromRole="programa" ToRole="horario_programa" />
+          <NavigationProperty Name="conductor" Relationship="Self.programa_conductor" FromRole="programa" ToRole="conductor" />
+          <NavigationProperty Name="patrocinador" Relationship="Self.programa_patrocinador" FromRole="programa" ToRole="patrocinador" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.fkUsuario_rol" FromRole="rol" ToRole="usuario" />
+          <NavigationProperty Name="permiso" Relationship="Self.rol_permiso" FromRole="rol" ToRole="permiso" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_rol" Type="Int32" />
+          <NavigationProperty Name="cliente" Relationship="Self.fkUsuario" FromRole="usuario" ToRole="cliente" />
+          <NavigationProperty Name="invitado" Relationship="Self.fkUsuario_invitado" FromRole="usuario" ToRole="invitado" />
+          <NavigationProperty Name="rol" Relationship="Self.fkUsuario_rol" FromRole="usuario" ToRole="rol" />
+        </EntityType>
+        <Association Name="fkUsuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkIdPrograma">
+          <End Role="programa" Type="Self.programa" Multiplicity="1" />
+          <End Role="comentario" Type="Self.comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comentario">
+              <PropertyRef Name="idPrograma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkIdDPrograma">
+          <End Role="programa" Type="Self.programa" Multiplicity="1" />
+          <End Role="horario_programa" Type="Self.horario_programa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="horario_programa">
+              <PropertyRef Name="idPrograma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkUsuario_invitado">
+          <End Role="invitado" Type="Self.invitado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="invitado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkUsuario_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="programa_conductor">
+          <End Role="conductor" Type="Self.conductor" Multiplicity="*" />
+          <End Role="programa" Type="Self.programa" Multiplicity="*" />
+        </Association>
+        <Association Name="programa_patrocinador">
+          <End Role="programa" Type="Self.programa" Multiplicity="*" />
+          <End Role="patrocinador" Type="Self.patrocinador" Multiplicity="*" />
+        </Association>
+        <Association Name="rol_permiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="*" />
+          <End Role="rol" Type="Self.rol" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="vozDelEsteBsdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="clima" EntityType="Self.clima" />
+          <EntitySet Name="comentario" EntityType="Self.comentario" />
+          <EntitySet Name="conductor" EntityType="Self.conductor" />
+          <EntitySet Name="cotizacion" EntityType="Self.cotizacion" />
+          <EntitySet Name="datosCliente_dependenciaCedula" EntityType="Self.datosCliente_dependenciaCedula" />
+          <EntitySet Name="horario_programa" EntityType="Self.horario_programa" />
+          <EntitySet Name="invitado" EntityType="Self.invitado" />
+          <EntitySet Name="noticia" EntityType="Self.noticia" />
+          <EntitySet Name="patrocinador" EntityType="Self.patrocinador" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" />
+          <EntitySet Name="programa" EntityType="Self.programa" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="fkUsuario" Association="Self.fkUsuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fkIdPrograma" Association="Self.fkIdPrograma">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="comentario" EntitySet="comentario" />
+          </AssociationSet>
+          <AssociationSet Name="fkIdDPrograma" Association="Self.fkIdDPrograma">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="horario_programa" EntitySet="horario_programa" />
+          </AssociationSet>
+          <AssociationSet Name="fkUsuario_invitado" Association="Self.fkUsuario_invitado">
+            <End Role="invitado" EntitySet="invitado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fkUsuario_rol" Association="Self.fkUsuario_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="programa_conductor" Association="Self.programa_conductor">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="programa" EntitySet="programa" />
+          </AssociationSet>
+          <AssociationSet Name="programa_patrocinador" Association="Self.programa_patrocinador">
+            <End Role="programa" EntitySet="programa" />
+            <End Role="patrocinador" EntitySet="patrocinador" />
+          </AssociationSet>
+          <AssociationSet Name="rol_permiso" Association="Self.rol_permiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="rol" EntitySet="rol" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vozDelEsteBsdModelStoreContainer" CdmEntityContainer="vozDelEsteBsdEntities">
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clima">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.clima">
+              <MappingFragment StoreEntitySet="clima">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="temperatura" ColumnName="temperatura" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="icono" ColumnName="icono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comentario">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.comentario">
+              <MappingFragment StoreEntitySet="comentario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="cedulaCliente" ColumnName="cedulaCliente" />
+                <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conductor">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.conductor">
+              <MappingFragment StoreEntitySet="conductor">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="biografia" ColumnName="biografia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cotizacion">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.cotizacion">
+              <MappingFragment StoreEntitySet="cotizacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="tipoMoneda" ColumnName="tipoMoneda" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datosCliente_dependenciaCedula">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.datosCliente_dependenciaCedula">
+              <MappingFragment StoreEntitySet="datosCliente_dependenciaCedula">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombreReal" ColumnName="nombreReal" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horario_programa">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.horario_programa">
+              <MappingFragment StoreEntitySet="horario_programa">
+                <ScalarProperty Name="idPrograma" ColumnName="idPrograma" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="horaFinal" ColumnName="horaFinal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invitado">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.invitado">
+              <MappingFragment StoreEntitySet="invitado">
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="noticia">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.noticia">
+              <MappingFragment StoreEntitySet="noticia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="fechaPublicacion" ColumnName="fechaPublicacion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patrocinador">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.patrocinador">
+              <MappingFragment StoreEntitySet="patrocinador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="plann" ColumnName="plann" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permiso">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.permiso">
+              <MappingFragment StoreEntitySet="permiso">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="programa">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.programa">
+              <MappingFragment StoreEntitySet="programa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="programa_conductor" TypeName="vozDelEsteBsdModel.programa_conductor" StoreEntitySet="programa_conductor">
+            <EndProperty Name="conductor">
+              <ScalarProperty Name="cedula" ColumnName="cedulaConductor" />
+            </EndProperty>
+            <EndProperty Name="programa">
+              <ScalarProperty Name="id" ColumnName="idPrograma" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="programa_patrocinador" TypeName="vozDelEsteBsdModel.programa_patrocinador" StoreEntitySet="programa_patrocinador">
+            <EndProperty Name="programa">
+              <ScalarProperty Name="id" ColumnName="id_Programa" />
+            </EndProperty>
+            <EndProperty Name="patrocinador">
+              <ScalarProperty Name="id" ColumnName="id_Patrocinador" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="rol_permiso" TypeName="vozDelEsteBsdModel.rol_permiso" StoreEntitySet="rol_permiso">
+            <EndProperty Name="permiso">
+              <ScalarProperty Name="id" ColumnName="id_permiso" />
+            </EndProperty>
+            <EndProperty Name="rol">
+              <ScalarProperty Name="id" ColumnName="id_rol" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
