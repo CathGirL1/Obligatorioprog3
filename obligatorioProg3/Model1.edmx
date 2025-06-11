@@ -72,12 +72,6 @@
           <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
           <Property Name="horaFinal" Type="time" Precision="7" Nullable="false" />
         </EntityType>
-        <EntityType Name="invitado">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
         <EntityType Name="noticia">
           <Key>
             <PropertyRef Name="id" />
@@ -145,11 +139,21 @@
           <Property Name="id_rol" Type="int" Nullable="false" />
           <Property Name="id_permiso" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nickname" Type="varchar" MaxLength="25" />
           <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="contrasenia" Type="varchar" MaxLength="20" />
@@ -272,18 +276,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkUsuario_invitado">
-          <End Role="invitado" Type="Self.invitado" Multiplicity="1" />
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="invitado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fkUsuario_rol">
           <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
           <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
@@ -304,7 +296,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <EntitySet Name="cotizacion" EntityType="Self.cotizacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="datosCliente_dependenciaCedula" EntityType="Self.datosCliente_dependenciaCedula" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="horario_programa" EntityType="Self.horario_programa" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="invitado" EntityType="Self.invitado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="noticia" EntityType="Self.noticia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="patrocinador" EntityType="Self.patrocinador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permiso" EntityType="Self.permiso" Schema="dbo" store:Type="Tables" />
@@ -313,6 +304,7 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <EntitySet Name="programa_patrocinador" EntityType="Self.programa_patrocinador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rol_permiso" EntityType="Self.rol_permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fkConductorCedula" Association="Self.fkConductorCedula">
             <End Role="conductor" EntitySet="conductor" />
@@ -349,10 +341,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <AssociationSet Name="fkUsuario" Association="Self.fkUsuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="cliente" EntitySet="cliente" />
-          </AssociationSet>
-          <AssociationSet Name="fkUsuario_invitado" Association="Self.fkUsuario_invitado">
-            <End Role="invitado" EntitySet="invitado" />
-            <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
           <AssociationSet Name="fkUsuario_rol" Association="Self.fkUsuario_rol">
             <End Role="rol" EntitySet="rol" />
@@ -435,13 +423,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <Property Name="horaFinal" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="programa" Relationship="Self.fkIdDPrograma" FromRole="horario_programa" ToRole="programa" />
         </EntityType>
-        <EntityType Name="invitado">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="usuario" Relationship="Self.fkUsuario_invitado" FromRole="invitado" ToRole="usuario" />
-        </EntityType>
         <EntityType Name="noticia">
           <Key>
             <PropertyRef Name="id" />
@@ -493,17 +474,26 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <NavigationProperty Name="usuario" Relationship="Self.fkUsuario_rol" FromRole="rol" ToRole="usuario" />
           <NavigationProperty Name="permiso" Relationship="Self.rol_permiso" FromRole="rol" ToRole="permiso" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nickname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="contrasenia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="id_rol" Type="Int32" />
           <NavigationProperty Name="cliente" Relationship="Self.fkUsuario" FromRole="usuario" ToRole="cliente" />
-          <NavigationProperty Name="invitado" Relationship="Self.fkUsuario_invitado" FromRole="usuario" ToRole="invitado" />
           <NavigationProperty Name="rol" Relationship="Self.fkUsuario_rol" FromRole="usuario" ToRole="rol" />
         </EntityType>
         <Association Name="fkUsuario">
@@ -542,18 +532,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkUsuario_invitado">
-          <End Role="invitado" Type="Self.invitado" Multiplicity="1" />
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="invitado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fkUsuario_rol">
           <End Role="rol" Type="Self.rol" Multiplicity="0..1" />
           <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
@@ -586,12 +564,12 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <EntitySet Name="cotizacion" EntityType="Self.cotizacion" />
           <EntitySet Name="datosCliente_dependenciaCedula" EntityType="Self.datosCliente_dependenciaCedula" />
           <EntitySet Name="horario_programa" EntityType="Self.horario_programa" />
-          <EntitySet Name="invitado" EntityType="Self.invitado" />
           <EntitySet Name="noticia" EntityType="Self.noticia" />
           <EntitySet Name="patrocinador" EntityType="Self.patrocinador" />
           <EntitySet Name="permiso" EntityType="Self.permiso" />
           <EntitySet Name="programa" EntityType="Self.programa" />
           <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
           <AssociationSet Name="fkUsuario" Association="Self.fkUsuario">
             <End Role="usuario" EntitySet="usuario" />
@@ -604,10 +582,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
           <AssociationSet Name="fkIdDPrograma" Association="Self.fkIdDPrograma">
             <End Role="programa" EntitySet="programa" />
             <End Role="horario_programa" EntitySet="horario_programa" />
-          </AssociationSet>
-          <AssociationSet Name="fkUsuario_invitado" Association="Self.fkUsuario_invitado">
-            <End Role="invitado" EntitySet="invitado" />
-            <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
           <AssociationSet Name="fkUsuario_rol" Association="Self.fkUsuario_rol">
             <End Role="rol" EntitySet="rol" />
@@ -702,13 +676,6 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="invitado">
-            <EntityTypeMapping TypeName="vozDelEsteBsdModel.invitado">
-              <MappingFragment StoreEntitySet="invitado">
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="noticia">
             <EntityTypeMapping TypeName="vozDelEsteBsdModel.noticia">
               <MappingFragment StoreEntitySet="noticia">
@@ -754,6 +721,17 @@ advertencia 6035: La relación 'fkIdCliente' tiene columnas que no forman parte 
               <MappingFragment StoreEntitySet="rol">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

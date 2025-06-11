@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "obligatorioProg3", "obligatorioProg3\obligatorioProg3.csproj", "{16F738A8-E1B4-4BCA-942B-278BA3851E1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "obligatorioProg3", "obligatorioProg3\obligatorioProg3.csproj", "{4CD4EC28-02AE-4978-B8ED-115E6E145EEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{16F738A8-E1B4-4BCA-942B-278BA3851E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16F738A8-E1B4-4BCA-942B-278BA3851E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16F738A8-E1B4-4BCA-942B-278BA3851E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16F738A8-E1B4-4BCA-942B-278BA3851E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD4EC28-02AE-4978-B8ED-115E6E145EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD4EC28-02AE-4978-B8ED-115E6E145EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD4EC28-02AE-4978-B8ED-115E6E145EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD4EC28-02AE-4978-B8ED-115E6E145EEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2F7F4B72-45B8-4C53-8F19-0BCBEC12A21C}
+		SolutionGuid = {AA7BB41F-93C4-4321-BD4F-733BD3AE48C2}
 	EndGlobalSection
 EndGlobal

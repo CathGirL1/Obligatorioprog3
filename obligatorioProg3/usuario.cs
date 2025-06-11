@@ -28,7 +28,6 @@ namespace obligatorioProg3
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cliente> cliente { get; set; }
-        public virtual invitado invitado { get; set; }
         public virtual rol rol { get; set; }
     }
 }

@@ -32,12 +32,12 @@ namespace obligatorioProg3
         public virtual DbSet<cotizacion> cotizacion { get; set; }
         public virtual DbSet<datosCliente_dependenciaCedula> datosCliente_dependenciaCedula { get; set; }
         public virtual DbSet<horario_programa> horario_programa { get; set; }
-        public virtual DbSet<invitado> invitado { get; set; }
         public virtual DbSet<noticia> noticia { get; set; }
         public virtual DbSet<patrocinador> patrocinador { get; set; }
         public virtual DbSet<permiso> permiso { get; set; }
         public virtual DbSet<programa> programa { get; set; }
         public virtual DbSet<rol> rol { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
     }
 }
