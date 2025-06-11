@@ -141,7 +141,10 @@
     <Compile Include="conductor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\comentariosController.cs" />
+    <Compile Include="Controllers\conductoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\patrocinadoresController.cs" />
     <Compile Include="Controllers\programasController.cs" />
     <Compile Include="cotizacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -266,6 +269,21 @@
     <Content Include="Views\programas\Details.cshtml" />
     <Content Include="Views\programas\Edit.cshtml" />
     <Content Include="Views\programas\Index.cshtml" />
+    <Content Include="Views\patrocinadores\Create.cshtml" />
+    <Content Include="Views\patrocinadores\Delete.cshtml" />
+    <Content Include="Views\patrocinadores\Details.cshtml" />
+    <Content Include="Views\patrocinadores\Edit.cshtml" />
+    <Content Include="Views\patrocinadores\Index.cshtml" />
+    <Content Include="Views\conductores\Create.cshtml" />
+    <Content Include="Views\conductores\Delete.cshtml" />
+    <Content Include="Views\conductores\Details.cshtml" />
+    <Content Include="Views\conductores\Edit.cshtml" />
+    <Content Include="Views\conductores\Index.cshtml" />
+    <Content Include="Views\comentarios\Create.cshtml" />
+    <Content Include="Views\comentarios\Delete.cshtml" />
+    <Content Include="Views\comentarios\Details.cshtml" />
+    <Content Include="Views\comentarios\Edit.cshtml" />
+    <Content Include="Views\comentarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
