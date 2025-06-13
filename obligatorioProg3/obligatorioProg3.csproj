@@ -163,23 +163,17 @@
     <Compile Include="cliente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="clima.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="comentario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="conductor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\comentariosController.cs" />
-    <Compile Include="Controllers\conductoresController.cs" />
+    <Compile Include="Controllers\ComentariosController.cs" />
+    <Compile Include="Controllers\ConductoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\patrocinadoresController.cs" />
-    <Compile Include="Controllers\programasController.cs" />
-    <Compile Include="cotizacion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\PatrocinadoresController.cs" />
+    <Compile Include="Controllers\ProgramasController.cs" />
     <Compile Include="datosCliente_dependenciaCedula.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -204,6 +198,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cotizacion.cs" />
+    <Compile Include="Models\Clima.cs" />
     <Compile Include="noticia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -244,6 +240,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\imagenFondoParaHome.jpg" />
+    <Content Include="Content\Images\logoLaVozDelEste.png" />
+    <Content Include="Content\Images\logoLaVozDelEste2.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -295,30 +294,29 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\programas\Create.cshtml" />
-    <Content Include="Views\programas\Delete.cshtml" />
-    <Content Include="Views\programas\Details.cshtml" />
-    <Content Include="Views\programas\Edit.cshtml" />
-    <Content Include="Views\programas\Index.cshtml" />
-    <Content Include="Views\patrocinadores\Create.cshtml" />
-    <Content Include="Views\patrocinadores\Delete.cshtml" />
-    <Content Include="Views\patrocinadores\Details.cshtml" />
-    <Content Include="Views\patrocinadores\Edit.cshtml" />
-    <Content Include="Views\patrocinadores\Index.cshtml" />
-    <Content Include="Views\conductores\Create.cshtml" />
-    <Content Include="Views\conductores\Delete.cshtml" />
-    <Content Include="Views\conductores\Details.cshtml" />
-    <Content Include="Views\conductores\Edit.cshtml" />
-    <Content Include="Views\conductores\Index.cshtml" />
-    <Content Include="Views\comentarios\Create.cshtml" />
-    <Content Include="Views\comentarios\Delete.cshtml" />
-    <Content Include="Views\comentarios\Details.cshtml" />
-    <Content Include="Views\comentarios\Edit.cshtml" />
-    <Content Include="Views\comentarios\Index.cshtml" />
+    <Content Include="Views\Programas\Create.cshtml" />
+    <Content Include="Views\Programas\Delete.cshtml" />
+    <Content Include="Views\Programas\Details.cshtml" />
+    <Content Include="Views\Programas\Edit.cshtml" />
+    <Content Include="Views\Programas\Index.cshtml" />
+    <Content Include="Views\Patrocinadores\Create.cshtml" />
+    <Content Include="Views\Patrocinadores\Delete.cshtml" />
+    <Content Include="Views\Patrocinadores\Details.cshtml" />
+    <Content Include="Views\Patrocinadores\Edit.cshtml" />
+    <Content Include="Views\Patrocinadores\Index.cshtml" />
+    <Content Include="Views\Conductores\Create.cshtml" />
+    <Content Include="Views\Conductores\Delete.cshtml" />
+    <Content Include="Views\Conductores\Details.cshtml" />
+    <Content Include="Views\Conductores\Edit.cshtml" />
+    <Content Include="Views\Conductores\Index.cshtml" />
+    <Content Include="Views\Comentarios\Create.cshtml" />
+    <Content Include="Views\Comentarios\Delete.cshtml" />
+    <Content Include="Views\Comentarios\Details.cshtml" />
+    <Content Include="Views\Comentarios\Edit.cshtml" />
+    <Content Include="Views\Comentarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
