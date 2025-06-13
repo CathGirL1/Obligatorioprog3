@@ -1,36 +1,42 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark custom-navbar">
         <div class="container">
-            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                <img src="~/Content/Images/logoLaVozDelEste2.png" alt="Logo de Mi App" style="height: 65px;" />
+            </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <ul class="navbar-nav flex-grow-1 justify-content-end custom-nav custom-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Patrocinadores", "Index", "Patrocinadores", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Conductores", "Index", "Conductores", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Programas", "Index", "Programas", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+
         @RenderBody()
-        <hr />
-        <footer>
+    <div class="container body-content">
+        @*<footer>
+             <hr />
+
             <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -38,3 +44,22 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<style>
+
+    .custom-navbar {
+        background-color: #001f3f; 
+    }
+
+    .custom-nav li{
+        margin-right: 10px; 
+    }
+
+    .body-content {
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+</style>

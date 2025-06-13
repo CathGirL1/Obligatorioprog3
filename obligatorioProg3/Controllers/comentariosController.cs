@@ -10,7 +10,7 @@ using obligatorioProg3;
 
 namespace obligatorioProg3.Controllers
 {
-    public class comentariosController : Controller
+    public class ComentariosController : Controller
     {
         private vozDelEsteBsdEntities db = new vozDelEsteBsdEntities();
 

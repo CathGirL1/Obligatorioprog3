@@ -26,10 +26,8 @@ namespace obligatorioProg3
         }
     
         public virtual DbSet<cliente> cliente { get; set; }
-        public virtual DbSet<clima> clima { get; set; }
         public virtual DbSet<comentario> comentario { get; set; }
         public virtual DbSet<conductor> conductor { get; set; }
-        public virtual DbSet<cotizacion> cotizacion { get; set; }
         public virtual DbSet<datosCliente_dependenciaCedula> datosCliente_dependenciaCedula { get; set; }
         public virtual DbSet<horario_programa> horario_programa { get; set; }
         public virtual DbSet<noticia> noticia { get; set; }
