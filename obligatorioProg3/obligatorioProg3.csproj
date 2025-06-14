@@ -163,7 +163,9 @@
     <Compile Include="Models\cliente.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\clima.cs" />
+    <Compile Include="Models\clima.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\comentario.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
@@ -175,7 +177,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatrocinadoresController.cs" />
     <Compile Include="Controllers\ProgramasController.cs" />
-    <Compile Include="Models\cotizacion.cs" />
+    <Compile Include="Models\cotizacion.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\datosCliente_dependenciaCedula.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
@@ -184,16 +188,6 @@
     </Compile>
     <Compile Include="Models\horario_programa.cs">
       <DependentUpon>modelos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\modelos.Context.cs">
       <AutoGen>True</AutoGen>
@@ -226,9 +220,6 @@
     <Compile Include="Models\rol.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>modelos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\usuario.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
@@ -256,16 +247,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modelos.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>modelos.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\modelos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>modelos.Context.cs</LastGenOutput>

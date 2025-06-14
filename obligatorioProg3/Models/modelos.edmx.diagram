@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="vozDelEsteBsdModel.permiso" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="vozDelEsteBsdModel.programa" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="vozDelEsteBsdModel.rol" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="vozDelEsteBsdModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vozDelEsteBsdModel.usuario" Width="1.5" PointX="12.25" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkUsuario" ManuallyRouted="false" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkIdPrograma" ManuallyRouted="false" />
