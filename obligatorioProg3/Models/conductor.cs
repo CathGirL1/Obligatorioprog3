@@ -7,24 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace obligatorioProg3
+namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class permiso
+    public partial class conductor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public permiso()
+        public conductor()
         {
-            this.rol = new HashSet<rol>();
+            this.programa = new HashSet<programa>();
         }
     
-        public int id { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<bool> estado { get; set; }
+        public int cedula { get; set; }
+        public string nombre { get; set; }
+        public string biografia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rol> rol { get; set; }
+        public virtual ICollection<programa> programa { get; set; }
     }
 }

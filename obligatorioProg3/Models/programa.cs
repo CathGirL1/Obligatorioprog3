@@ -7,26 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace obligatorioProg3
+namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class rol
+    public partial class programa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public rol()
+        public programa()
         {
-            this.usuario = new HashSet<usuario>();
-            this.permiso = new HashSet<permiso>();
+            this.comentario = new HashSet<comentario>();
+            this.horario_programa = new HashSet<horario_programa>();
+            this.conductor = new HashSet<conductor>();
+            this.patrocinador = new HashSet<patrocinador>();
         }
     
         public int id { get; set; }
         public string nombre { get; set; }
+        public string descripcion { get; set; }
+        public string imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public virtual ICollection<comentario> comentario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<permiso> permiso { get; set; }
+        public virtual ICollection<horario_programa> horario_programa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<conductor> conductor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<patrocinador> patrocinador { get; set; }
     }
 }

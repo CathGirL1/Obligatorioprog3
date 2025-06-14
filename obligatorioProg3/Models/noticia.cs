@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace obligatorioProg3
+namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class horario_programa
+    public partial class noticia
     {
-        public int idPrograma { get; set; }
-        public string dia { get; set; }
-        public System.TimeSpan horaInicio { get; set; }
-        public System.TimeSpan horaFinal { get; set; }
-    
-        public virtual programa programa { get; set; }
+        public int id { get; set; }
+        public string titulo { get; set; }
+        public string contenido { get; set; }
+        public System.DateTime fechaPublicacion { get; set; }
+        public string imagen { get; set; }
     }
 }

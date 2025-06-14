@@ -7,25 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace obligatorioProg3
+namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class patrocinador
+    public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public patrocinador()
+        public usuario()
         {
-            this.programa = new HashSet<programa>();
+            this.cliente = new HashSet<cliente>();
         }
     
         public int id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public int plann { get; set; }
+        public string nickname { get; set; }
+        public string email { get; set; }
+        public string contrasenia { get; set; }
+        public Nullable<int> id_rol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<programa> programa { get; set; }
+        public virtual ICollection<cliente> cliente { get; set; }
+        public virtual rol rol { get; set; }
     }
 }

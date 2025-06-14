@@ -7,17 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace obligatorioProg3
+namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class noticia
+    public partial class datosCliente_dependenciaCedula
     {
-        public int id { get; set; }
-        public string titulo { get; set; }
-        public string contenido { get; set; }
-        public System.DateTime fechaPublicacion { get; set; }
-        public string imagen { get; set; }
+        public int cedula { get; set; }
+        public string nombreReal { get; set; }
+        public string apellido { get; set; }
+        public System.DateTime fechaNacimiento { get; set; }
     }
 }

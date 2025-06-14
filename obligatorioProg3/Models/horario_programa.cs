@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace obligatorioProg3
+namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class horario_programa
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int idPrograma { get; set; }
+        public string dia { get; set; }
+        public System.TimeSpan horaInicio { get; set; }
+        public System.TimeSpan horaFinal { get; set; }
+    
+        public virtual programa programa { get; set; }
     }
 }
