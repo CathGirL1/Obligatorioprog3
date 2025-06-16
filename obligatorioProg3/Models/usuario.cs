@@ -17,7 +17,7 @@ namespace obligatorioProg3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public usuario()
         {
-            this.cliente = new HashSet<cliente>();
+
         }
     
         public int id { get; set; }
@@ -27,7 +27,7 @@ namespace obligatorioProg3.Models
         public Nullable<int> id_rol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cliente> cliente { get; set; }
+        public virtual cliente cliente { get; set; }
         public virtual rol rol { get; set; }
     }
 }

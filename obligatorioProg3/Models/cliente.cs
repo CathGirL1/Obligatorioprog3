@@ -18,5 +18,7 @@ namespace obligatorioProg3.Models
         public int cedula { get; set; }
     
         public virtual usuario usuario { get; set; }
+
+        public virtual datosCliente_dependenciaCedula datosCliente_dependenciaCedula { get; set; }
     }
 }
