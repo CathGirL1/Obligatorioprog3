@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -47,10 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -160,72 +160,72 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="cliente.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegistroController.cs" />
+    <Compile Include="Models\cliente.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="clima.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\clima.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="comentario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\comentario.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="conductor.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\conductor.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\comentariosController.cs" />
-    <Compile Include="Controllers\conductoresController.cs" />
+    <Compile Include="Controllers\ComentariosController.cs" />
+    <Compile Include="Controllers\ConductoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\patrocinadoresController.cs" />
-    <Compile Include="Controllers\programasController.cs" />
-    <Compile Include="cotizacion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Controllers\PatrocinadoresController.cs" />
+    <Compile Include="Controllers\ProgramasController.cs" />
+    <Compile Include="Models\cotizacion.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="datosCliente_dependenciaCedula.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\datosCliente_dependenciaCedula.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="horario_programa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\horario_programa.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
+    <Compile Include="Models\modelos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>modelos.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.cs">
+    <Compile Include="Models\modelos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Designer.cs">
+    <Compile Include="Models\modelos.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>modelos.edmx</DependentUpon>
     </Compile>
-    <Compile Include="noticia.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\noticia.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="patrocinador.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\patrocinador.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="permiso.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\permiso.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="programa.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\programa.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="rol.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\rol.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="usuario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\RegistroUsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -244,18 +244,21 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\imagenFondoParaHome.jpg" />
+    <Content Include="Content\Images\logoLaVozDelEste.png" />
+    <Content Include="Content\Images\logoLaVozDelEste2.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Model1.Context.tt">
+    <Content Include="Models\modelos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <LastGenOutput>modelos.Context.cs</LastGenOutput>
+      <DependentUpon>modelos.edmx</DependentUpon>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="Models\modelos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <LastGenOutput>modelos.cs</LastGenOutput>
+      <DependentUpon>modelos.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -263,12 +266,12 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="Models\modelos.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>modelos.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\modelos.edmx.diagram">
+      <DependentUpon>modelos.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -295,30 +298,31 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\programas\Create.cshtml" />
-    <Content Include="Views\programas\Delete.cshtml" />
-    <Content Include="Views\programas\Details.cshtml" />
-    <Content Include="Views\programas\Edit.cshtml" />
-    <Content Include="Views\programas\Index.cshtml" />
-    <Content Include="Views\patrocinadores\Create.cshtml" />
-    <Content Include="Views\patrocinadores\Delete.cshtml" />
-    <Content Include="Views\patrocinadores\Details.cshtml" />
-    <Content Include="Views\patrocinadores\Edit.cshtml" />
-    <Content Include="Views\patrocinadores\Index.cshtml" />
-    <Content Include="Views\conductores\Create.cshtml" />
-    <Content Include="Views\conductores\Delete.cshtml" />
-    <Content Include="Views\conductores\Details.cshtml" />
-    <Content Include="Views\conductores\Edit.cshtml" />
-    <Content Include="Views\conductores\Index.cshtml" />
-    <Content Include="Views\comentarios\Create.cshtml" />
-    <Content Include="Views\comentarios\Delete.cshtml" />
-    <Content Include="Views\comentarios\Details.cshtml" />
-    <Content Include="Views\comentarios\Edit.cshtml" />
-    <Content Include="Views\comentarios\Index.cshtml" />
+    <Content Include="Views\Programas\Create.cshtml" />
+    <Content Include="Views\Programas\Delete.cshtml" />
+    <Content Include="Views\Programas\Details.cshtml" />
+    <Content Include="Views\Programas\Edit.cshtml" />
+    <Content Include="Views\Programas\Index.cshtml" />
+    <Content Include="Views\Patrocinadores\Create.cshtml" />
+    <Content Include="Views\Patrocinadores\Delete.cshtml" />
+    <Content Include="Views\Patrocinadores\Details.cshtml" />
+    <Content Include="Views\Patrocinadores\Edit.cshtml" />
+    <Content Include="Views\Patrocinadores\Index.cshtml" />
+    <Content Include="Views\Conductores\Create.cshtml" />
+    <Content Include="Views\Conductores\Delete.cshtml" />
+    <Content Include="Views\Conductores\Details.cshtml" />
+    <Content Include="Views\Conductores\Edit.cshtml" />
+    <Content Include="Views\Conductores\Index.cshtml" />
+    <Content Include="Views\Comentarios\Create.cshtml" />
+    <Content Include="Views\Comentarios\Delete.cshtml" />
+    <Content Include="Views\Comentarios\Details.cshtml" />
+    <Content Include="Views\Comentarios\Edit.cshtml" />
+    <Content Include="Views\Comentarios\Index.cshtml" />
+    <Content Include="Views\Registro\CrearUsuario.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -383,10 +387,10 @@
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

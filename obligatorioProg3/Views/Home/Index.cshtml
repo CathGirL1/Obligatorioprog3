@@ -1,33 +1,137 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model List<obligatorioProg3.Models.noticia>
+
+@section styles {
+    <style>
+        .imagenFondoParaHome {
+            background-image: url('/Content/Images/imagenFondoParaHome.jpg');
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 150vh;
+            
+           
+        }
+
+
+        .card-custom {
+            border: 10px solid #0d1b2a;
+            border-radius: 5px;
+            box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.6); /* efecto sombra para los contornos de la cardd */
+            background-color: darkcyan;
+            margin: 65px; 
+        }
+
+        .btn-primary {
+            color: black;
+        }
+
+        .btn-primary:hover{
+            color: aqua; 
+        }
+
+        .modal {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: midnightblue;
+            opacity: 4;
+        }
+
+        .texto-custom {
+            color: black;
+            border-radius: 10px;
+            background-color: steelblue; 
+        }
+
+        .hr-custom {
+            border: none; 
+            border-top: 2px solid black; 
+            margin: 1rem 0;
+        }
+
+        .modal-title {
+            color: black;
+            border-radius: 10px;
+            background-color: steelblue;
+        }
+
+        .modal-header {
+            border-bottom: none; 
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+
+        .btn-secondary {
+            background-color: dodgerblue;
+            color: black;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: navy;
+            color: cyan;
+        }
+
+
+    </style>
+}
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    <div class="imagenFondoParaHome">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                @foreach (var noticia in Model)
+                 {
+                    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                        <div class="card card-custom" style="width: 18rem;">
+                            <img src="@noticia.imagen" class="card-img-top" alt="Imagen de noticia" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title"> @noticia.titulo</h5>
+                                <p class=" card-text"> Fecha de publicación: @noticia.fechaPublicacion.ToString("dd/MM/yyyy")</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#noticiaModels-@noticia.id">Leer más...</a> @*(model)*@
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+                    <div class="modal fade" tabindex="-1" id="noticiaModels-@noticia.id" aria-labelledby="modalLabel-@noticia.id" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel-@noticia.id">@noticia.titulo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+
+                                <hr class="hr-custom" />
+
+                                <div class="modal-body">
+                                    <img src=" @noticia.imagen" class=" img-fluid mb-3" alt=" Imagen de noticia" />
+                                    <hr class="hr-custom" />
+                                    <p class=" texto-custom"> Descripción de la noticia: @noticia.contenido</p>
+                                    <p class="texto-custom"> Fecha de publiación: @noticia.fechaPublicacion.ToString("dd/MM/yyyy")</p>
+                                </div>
+
+                                <hr class="hr-custom" />
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 }
+            </div>
+        </div>
+
+        
+       
     </div>
 </main>
+
