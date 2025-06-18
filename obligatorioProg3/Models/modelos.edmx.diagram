@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8a81722f5d94285be082d5e012f24fa" Name="Diagram1">
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.cliente" Width="1.5" PointX="14.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.clima" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.comentario" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.conductor" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.cotizacion" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Width="1.5" PointX="12.375" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.horario_programa" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.noticia" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.patrocinador" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.permiso" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.programa" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.rol" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.usuario" Width="1.5" PointX="12.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkIdPrograma" ManuallyRouted="false" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkIdDPrograma" ManuallyRouted="false" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkUsuario_rol" ManuallyRouted="false" />
+        <AssociationConnector Association="vozDelEsteBsdModel.programa_conductor" ManuallyRouted="false" />
+        <AssociationConnector Association="vozDelEsteBsdModel.programa_patrocinador" ManuallyRouted="false" />
+        <AssociationConnector Association="vozDelEsteBsdModel.rol_permiso" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
