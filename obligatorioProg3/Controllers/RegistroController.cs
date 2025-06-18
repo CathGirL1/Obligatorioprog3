@@ -31,31 +31,37 @@ namespace obligatorioProg3.Controllers
                 return View(model);
             }
 
-            var usuario = new usuario
+            usuario nuevoUsuario = new usuario
             {
                 nickname = model.Nickname,
                 email = model.Email,
-                contrasenia = model.Contraseña
+                contrasenia = model.Contraseña,
+                id_rol = 1, // Asignar rol cliente defecto
             };
 
-            var cliente = new cliente
+            db.usuario.Add(nuevoUsuario);
+            db.SaveChanges();
+
+            cliente nuevoCliente = new cliente
             {
-                cedula = model.Cedula
+                id = db.usuario.Find(nuevoUsuario.id).id, // Asignar el ID del usuario recién creado
+                cedula = model.Cedula,
+                usuario = nuevoUsuario
             };
 
-            var datos = new datosCliente_dependenciaCedula
+            datosCliente_dependenciaCedula datos = new datosCliente_dependenciaCedula
             {
+                cedula = model.Cedula,
+                cedulaCliente = model.Cedula,
                 nombreReal = model.NombreReal,
                 apellido = model.Apellido,
                 fechaNacimiento = model.FechaNacimiento,
-                cliente = cliente
             };
 
-            cliente.datosCliente_dependenciaCedula = datos;
-            usuario.cliente = cliente;
-
-            db.usuario.Add(usuario);
+            db.cliente.Add(nuevoCliente);
+            db.datosCliente_dependenciaCedula.Add(datos);
             db.SaveChanges();
+
 
             return View(model);
         }

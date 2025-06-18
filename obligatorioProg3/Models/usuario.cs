@@ -24,7 +24,7 @@ namespace obligatorioProg3.Models
         public string nickname { get; set; }
         public string email { get; set; }
         public string contrasenia { get; set; }
-        public Nullable<int> id_rol { get; set; }
+        public int id_rol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual cliente cliente { get; set; }
