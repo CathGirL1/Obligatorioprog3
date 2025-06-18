@@ -7,10 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using obligatorioProg3;
+using obligatorioProg3.Models;
 
 namespace obligatorioProg3.Controllers
 {
-    public class programasController : Controller
+    public class ProgramasController : Controller
     {
         private vozDelEsteBsdEntities db = new vozDelEsteBsdEntities();
 
