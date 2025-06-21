@@ -1,7 +1,11 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
+
 @model List<obligatorioProg3.Models.noticia>
+
+
 
 @section styles {
     <style>
@@ -12,9 +16,8 @@
             background-size: cover;
             background-repeat: no-repeat;
             width: 100%;
-            height: 150vh;
-            
-           
+            min-height: 100vh;
+            padding-bottom: 2rem;
         }
 
 
@@ -23,15 +26,16 @@
             border-radius: 5px;
             box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.6); /* efecto sombra para los contornos de la cardd */
             background-color: darkcyan;
-            margin: 65px; 
+            margin: 65px;
+            max-width: 20rem;
         }
 
         .btn-primary {
             color: black;
         }
 
-        .btn-primary:hover{
-            color: aqua; 
+        .btn-primary:hover {
+            color: aqua;
         }
 
         .modal {
@@ -46,12 +50,12 @@
         .texto-custom {
             color: black;
             border-radius: 10px;
-            background-color: steelblue; 
+            background-color: steelblue;
         }
 
         .hr-custom {
-            border: none; 
-            border-top: 2px solid black; 
+            border: none;
+            border-top: 2px solid black;
             margin: 1rem 0;
         }
 
@@ -62,7 +66,7 @@
         }
 
         .modal-header {
-            border-bottom: none; 
+            border-bottom: none;
         }
 
         .modal-footer {
@@ -79,8 +83,6 @@
             background-color: navy;
             color: cyan;
         }
-
-
     </style>
 }
 
@@ -89,9 +91,11 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 @foreach (var noticia in Model)
-                 {
+                 {  
+                    
+
                     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-                        <div class="card card-custom" style="width: 18rem;">
+                        <div class="card card-custom w-100 mx-1 mx-md-3 mx-lg-4 my-3">
                             <img src="@noticia.imagen" class="card-img-top" alt="Imagen de noticia" style="height: 200px; object-fit: cover;">
                             <div class="card-body">
                                 <h5 class="card-title"> @noticia.titulo</h5>
@@ -126,12 +130,11 @@
                             </div>
                         </div>
                     </div>
-                 }
+                }
             </div>
         </div>
 
-        
-       
+
+
     </div>
 </main>
-

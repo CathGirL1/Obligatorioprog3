@@ -1,0 +1,147 @@
+﻿@model IEnumerable<obligatorioProg3.Models.noticia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles{ 
+    <style>
+        .btn-outline-botonCrear {
+            color: mediumaquamarine;
+            background-color: blue;
+            margin-left: 70px;
+        }
+
+        .titulo-gestion {
+            margin-left: 70px;
+        }
+
+        .btn-outline-botonCrear:hover{
+            color:mediumblue; 
+            background-color: mediumaquamarine; 
+        }
+
+        .btn-outline-botonEditar {
+            color: blue;
+            background-color: darkslateblue;
+        }
+
+        .btn-outline-botonEditar:hover {
+            color: darkblue;
+            background-color: royalblue;
+        }
+
+        .btn-outline-botonDetalle {
+            color: mediumblue;
+            background-color: lightskyblue;
+        }
+
+        .btn-outline-botonDetalle:hover {
+            color: lightskyblue;
+            background-color: mediumblue;
+        }
+
+        .btn-outline-botonEliminar {
+            color: dodgerblue;
+            background-color: aquamarine;
+        }
+
+        .btn-outline-botonEliminar:hover {
+            color: aquamarine;
+            background-color: dodgerblue;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970); /*color tipo anochecer con azul oscuro*/
+            color: aqua; 
+        }
+
+        .tabla-custom {
+            border: 1px solid aqua;
+            border-radius: 10px;
+            width: 500px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .tabla-custom th {
+            color: aqua !important; /* predefinidamente boostrap los th y td en el color de la letra lo tiene de negro el important obliga que el color sea asi pasando a boostrap por arriba*/
+        }
+
+        .tabla-custom td {
+            color: aqua !important;
+        }
+
+        .hr-custom {
+            border: none;
+            border-top: 2px solid aqua;
+            margin: 1rem 0;
+        }
+        
+
+    </style>
+
+}
+
+<body>
+    <br />
+    <h2 class="titulo-gestion">Gestión de noticias</h2>
+    <hr class="hr-custom" />
+
+    <a href="@Url.Action("Create")" class="btn btn-outline-botonCrear mb-3">Crear nueva noticia</a>
+
+    <table class="table table-bordered table-striped tabla-custom">
+
+        <thead>
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.titulo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.contenido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaPublicacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imagen)
+                </th>
+
+                <th>Acciones</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+            @foreach (var item in Model)
+             {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contenido)
+                    </td>
+                    <td>
+                        @item.fechaPublicacion.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.imagen)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.id })" class="btn btn-outline-botonEditar mb-3">Editar</a>
+                        <a href="@Url.Action("Details", new { id = item.id })" class="btn btn-outline-botonDetalle mb-3">Detalles</a>
+                        <a href="@Url.Action("Delete", new { id = item.id })" class="btn btn-outline-botonEliminar mb-3">Eliminar</a>
+                    </td>
+
+                </tr>
+             }
+        </tbody>
+
+
+    </table>
+
+</body>
+

@@ -11,13 +11,19 @@ namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class noticia
     {
         public int id { get; set; }
+        [Display(Name = "Titulo")] // para que en el encabezado de las noticias en el crud index se vea bien como nombre en vez del nombre de la variable en la vista
         public string titulo { get; set; }
+        [Display(Name = "Contenido")]
         public string contenido { get; set; }
+
+        [Display(Name = "Fecha publicación")]
         public System.DateTime fechaPublicacion { get; set; }
+        [Display(Name = "Imagen")]
         public string imagen { get; set; }
     }
 }
