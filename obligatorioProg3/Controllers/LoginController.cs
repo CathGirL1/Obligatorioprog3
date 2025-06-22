@@ -25,17 +25,23 @@ namespace obligatorioProg3.Controllers
                 return View(model);
             }
 
-            
+            var user = db.usuario.FirstOrDefault(u => u.email == model.email && u.contrasenia == model.contrasenia);
 
+            if(user != null)
+            {
+            Session["IdUsuario"] = user.id;
+            Session["Nickname"] = user.nickname;
+            Session["Email"] = user.email;
+            Session["Contrasenia"] = user.contrasenia;
+            Session["IdRol"] = user.id_rol;
 
-            return View(model);
-        }
-
-        public ActionResult Logout()
-        {
-            // Aquí puedes implementar la lógica de cierre de sesión, como limpiar la sesión del usuario.
-            Session.Clear();
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Usuario o contraseña incorrectos.");
+                return View(model);
+            }
         }
     }
 }

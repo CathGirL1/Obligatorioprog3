@@ -19,7 +19,6 @@ namespace obligatorioProg3.Models
         public string apellido { get; set; }
         public System.DateTime fechaNacimiento { get; set; }
 
-        public int cedulaCliente { get; set; }
         public virtual cliente cliente { get; set; }
     }
 }

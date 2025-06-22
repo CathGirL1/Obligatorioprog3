@@ -31,7 +31,8 @@ namespace obligatorioProg3.Controllers
                 return View(model);
             }
 
-            usuario nuevoUsuario = new usuario
+            // Crear usuario
+            var nuevoUsuario = new usuario
             {
                 nickname = model.Nickname,
                 email = model.Email,
@@ -44,15 +45,16 @@ namespace obligatorioProg3.Controllers
 
             cliente nuevoCliente = new cliente
             {
-                id = db.usuario.Find(nuevoUsuario.id).id, // Asignar el ID del usuario recién creado
-                cedula = model.Cedula,
-                usuario = nuevoUsuario
+                id = usuario.id, // Asignar el id del usuario al cliente
+                cedula = model.Cedula
             };
+            db.cliente.Add(nuevoCliente);
+            db.SaveChanges();
 
-            datosCliente_dependenciaCedula datos = new datosCliente_dependenciaCedula
+            // Crear datos dependientes
+            var datos = new datosCliente_dependenciaCedula
             {
                 cedula = model.Cedula,
-                cedulaCliente = model.Cedula,
                 nombreReal = model.NombreReal,
                 apellido = model.Apellido,
                 fechaNacimiento = model.FechaNacimiento,
@@ -62,8 +64,7 @@ namespace obligatorioProg3.Controllers
             db.datosCliente_dependenciaCedula.Add(datos);
             db.SaveChanges();
 
-
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -17,10 +17,10 @@ namespace obligatorioProg3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public programa()
         {
-            this.comentario = new HashSet<comentario>();
             this.horario_programa = new HashSet<horario_programa>();
             this.conductor = new HashSet<conductor>();
             this.patrocinador = new HashSet<patrocinador>();
+            this.comentario = new HashSet<comentario>();
         }
     
         public int id { get; set; }
@@ -29,12 +29,12 @@ namespace obligatorioProg3.Models
         public string imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<comentario> comentario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<horario_programa> horario_programa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<conductor> conductor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<patrocinador> patrocinador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<comentario> comentario { get; set; }
     }
 }

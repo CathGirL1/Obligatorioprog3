@@ -22,5 +22,6 @@ namespace obligatorioProg3.Models
         public int idPrograma { get; set; }
     
         public virtual programa programa { get; set; }
+        public virtual cliente cliente { get; set; }
     }
 }
