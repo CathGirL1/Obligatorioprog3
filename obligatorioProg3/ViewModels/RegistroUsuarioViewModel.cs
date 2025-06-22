@@ -22,6 +22,8 @@ namespace obligatorioProg3.ViewModels
         [Required]
         public int Cedula { get; set; }
 
+
+
         [Required]
         public string NombreReal { get; set; }
 

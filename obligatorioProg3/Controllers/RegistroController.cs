@@ -36,17 +36,16 @@ namespace obligatorioProg3.Controllers
                 nickname = model.Nickname,
                 email = model.Email,
                 contrasenia = model.Contraseña,
-                id_rol = 1, // Asignar rol cliente defecto
+                id_rol = 1 // Se asigna el rol de cliente por defecto por cada usuario que se registra
             };
 
-            db.usuario.Add(nuevoUsuario);
+            db.usuario.Add(usuario);
             db.SaveChanges();
 
-            cliente nuevoCliente = new cliente
+            var cliente = new cliente
             {
-                id = db.usuario.Find(nuevoUsuario.id).id, // Asignar el ID del usuario recién creado
-                cedula = model.Cedula,
-                usuario = nuevoUsuario
+                id = usuario.id, // Asignar el id del usuario al cliente
+                cedula = model.Cedula
             };
 
             datosCliente_dependenciaCedula datos = new datosCliente_dependenciaCedula
@@ -56,10 +55,15 @@ namespace obligatorioProg3.Controllers
                 nombreReal = model.NombreReal,
                 apellido = model.Apellido,
                 fechaNacimiento = model.FechaNacimiento,
+                cedula = model.Cedula, // Asignar la cedula del cliente a los datos del cliente
+                cedulaCliente = model.Cedula, // Asignar la cedula del cliente (como la clave foranea de datosCliente_dependenciaCedula a cedula)
+                cliente = cliente
             };
 
-            db.cliente.Add(nuevoCliente);
-            db.datosCliente_dependenciaCedula.Add(datos);
+            cliente.datosCliente_dependenciaCedula = datos;
+            usuario.cliente = cliente;
+            usuario.rol = db.rol.Find(1); // Asignar el rol de cliente por defecto
+
             db.SaveChanges();
 
 
