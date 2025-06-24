@@ -22,6 +22,18 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 justify-content-start custom-nav custom-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+
+                    <li class="dropdown">
+                        <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestion de usuarios
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Usuarios", "Index", "usuarios", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li><a class="dropdown-item" href="#">Clientes</a></li>
+                        </ul>
+                    </li>
+
+
                     <li>@Html.ActionLink("Patrocinadores", "Index", "Patrocinadores", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                     <li>@Html.ActionLink("Conductores", "Index", "Conductores", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                     <li>@Html.ActionLink("Programas", "Index", "Programas", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
@@ -30,7 +42,7 @@
 
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 justify-content-end custom-nav custom-nav">
-                    <li>@Html.ActionLink("Iniciar sesión", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Iniciar sesión", "Login", "Login", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                     <li>@Html.ActionLink("Registrarse", "CrearUsuario", "Registro", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                 </ul>
             </div>
@@ -66,7 +78,5 @@
         margin: 0;
         padding: 0;
     }
-
-
 
 </style>

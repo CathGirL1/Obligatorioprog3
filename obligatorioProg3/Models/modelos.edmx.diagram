@@ -23,9 +23,10 @@
         <AssociationConnector Association="vozDelEsteBsdModel.fkIdPrograma" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkUsuario_rol" />
         <EntityTypeShape EntityType="vozDelEsteBsdModel.cliente" Width="1.5" PointX="14.5" PointY="1.25" />
-        <EntityTypeShape EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Width="1.5" PointX="3.375" PointY="0.75" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkCliente_Usuario" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkIdCliente" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Width="1.5" PointX="17" PointY="0.5" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkDatosCliente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

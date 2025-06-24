@@ -54,7 +54,7 @@ namespace obligatorioProg3.Controllers
             // Crear datos dependientes
             var datos = new datosCliente_dependenciaCedula
             {
-                cedula = model.Cedula,
+                id = nuevoUsuario.id,
                 nombreReal = model.NombreReal,
                 apellido = model.Apellido,
                 fechaNacimiento = model.FechaNacimiento,
