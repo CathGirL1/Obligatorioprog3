@@ -46,18 +46,76 @@
                 @Html.DisplayFor(modelItem => item.id)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                <!-- Edicion de usuario-->
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
 
 
-                <!-- Botón que abre el modal -->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal_@item.id">Borrar</button>
-
-                <!-- Modal con ID único por usuario -->
-                <div class="modal fade" id="exampleModal_@item.id" tabindex="-1" aria-labelledby="exampleModalLabel_@item.id" aria-hidden="true">
+                <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel_@item.id">Borrar usuario</h1>
+                                <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de usuario</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!--  cuerpo de modal para editar a corregir, no probar porque hace null los datos del usuario que se quiere editar
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(modelItem => item.id)
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.nickname, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(modelItem => item.nickname, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => item.nickname, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(modelItem => item.email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => item.email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(modelItem => item.contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(modelItem => item.contrasenia, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(modelItem => item.contrasenia, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                    -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                                <form action="@Url.Action("Edit", "usuarios", new { id = item.id })" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Eliminacion de usuario-->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
+
+
+                <div class="modal fade" id="borrarModal_@item.id" tabindex="-1" aria-labelledby="borrarModalLabel_@item.id" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="borrarModalLabel_@item.id">Borrar usuario</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
                             </div>
                             <div class="modal-body">
