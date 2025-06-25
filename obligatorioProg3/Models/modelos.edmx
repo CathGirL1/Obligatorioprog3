@@ -507,28 +507,28 @@
             <End Role="rol" EntitySet="rol" />
           </AssociationSet>
           <EntitySet Name="comentario" EntityType="vozDelEsteBsdModel.comentario" />
-          <EntitySet Name="usuario" EntityType="vozDelEsteBsdModel.usuario" />
           <AssociationSet Name="fkIdPrograma" Association="vozDelEsteBsdModel.fkIdPrograma">
             <End Role="programa" EntitySet="programa" />
             <End Role="comentario" EntitySet="comentario" />
           </AssociationSet>
-          <AssociationSet Name="fkUsuario_rol" Association="vozDelEsteBsdModel.fkUsuario_rol">
-            <End Role="rol" EntitySet="rol" />
-            <End Role="usuario" EntitySet="usuario" />
-          </AssociationSet>
           <EntitySet Name="cliente" EntityType="vozDelEsteBsdModel.cliente" />
+          <EntitySet Name="datosCliente_dependenciaCedula" EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" />
+          <EntitySet Name="usuario" EntityType="vozDelEsteBsdModel.usuario" />
           <AssociationSet Name="fkCliente_Usuario" Association="vozDelEsteBsdModel.fkCliente_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fkDatosCliente" Association="vozDelEsteBsdModel.fkDatosCliente">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="datosCliente_dependenciaCedula" EntitySet="datosCliente_dependenciaCedula" />
           </AssociationSet>
           <AssociationSet Name="fkIdCliente" Association="vozDelEsteBsdModel.fkIdCliente">
             <End Role="cliente" EntitySet="cliente" />
             <End Role="comentario" EntitySet="comentario" />
           </AssociationSet>
-          <EntitySet Name="datosCliente_dependenciaCedula" EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" />
-          <AssociationSet Name="fkDatosCliente" Association="vozDelEsteBsdModel.fkDatosCliente">
-            <End Role="cliente" EntitySet="cliente" />
-            <End Role="datosCliente_dependenciaCedula" EntitySet="datosCliente_dependenciaCedula" />
+          <AssociationSet Name="fkUsuario_rol" Association="vozDelEsteBsdModel.fkUsuario_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="comentario">
@@ -544,18 +544,6 @@
           <NavigationProperty Name="programa" Relationship="vozDelEsteBsdModel.fkIdPrograma" FromRole="comentario" ToRole="programa" />
           <NavigationProperty Name="cliente" Relationship="vozDelEsteBsdModel.fkIdCliente" FromRole="comentario" ToRole="cliente" />
         </EntityType>
-        <EntityType Name="usuario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nickname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="contrasenia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="id_rol" Type="Int32" />
-          <NavigationProperty Name="rol" Relationship="vozDelEsteBsdModel.fkUsuario_rol" FromRole="usuario" ToRole="rol" />
-          <NavigationProperty Name="cliente" Relationship="vozDelEsteBsdModel.fkCliente_Usuario" FromRole="usuario" ToRole="cliente" />
-        </EntityType>
         <Association Name="fkIdPrograma">
           <End Type="vozDelEsteBsdModel.programa" Role="programa" Multiplicity="1" />
           <End Type="vozDelEsteBsdModel.comentario" Role="comentario" Multiplicity="*" />
@@ -568,18 +556,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fkUsuario_rol">
-          <End Type="vozDelEsteBsdModel.rol" Role="rol" Multiplicity="0..1" />
-          <End Type="vozDelEsteBsdModel.usuario" Role="usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="rol">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="id_rol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="cliente">
           <Key>
             <PropertyRef Name="id" />
@@ -587,8 +563,30 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="cedula" Type="Int32" Nullable="false" />
           <NavigationProperty Name="usuario" Relationship="vozDelEsteBsdModel.fkCliente_Usuario" FromRole="cliente" ToRole="usuario" />
-          <NavigationProperty Name="comentario" Relationship="vozDelEsteBsdModel.fkIdCliente" FromRole="cliente" ToRole="comentario" />
           <NavigationProperty Name="datosCliente_dependenciaCedula" Relationship="vozDelEsteBsdModel.fkDatosCliente" FromRole="cliente" ToRole="datosCliente_dependenciaCedula" />
+          <NavigationProperty Name="comentario" Relationship="vozDelEsteBsdModel.fkIdCliente" FromRole="cliente" ToRole="comentario" />
+        </EntityType>
+        <EntityType Name="datosCliente_dependenciaCedula">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombreReal" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="cliente" Relationship="vozDelEsteBsdModel.fkDatosCliente" FromRole="datosCliente_dependenciaCedula" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nickname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_rol" Type="Int32" />
+          <NavigationProperty Name="cliente" Relationship="vozDelEsteBsdModel.fkCliente_Usuario" FromRole="usuario" ToRole="cliente" />
+          <NavigationProperty Name="rol" Relationship="vozDelEsteBsdModel.fkUsuario_rol" FromRole="usuario" ToRole="rol" />
         </EntityType>
         <Association Name="fkCliente_Usuario">
           <End Type="vozDelEsteBsdModel.usuario" Role="usuario" Multiplicity="1" />
@@ -598,6 +596,20 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="cliente">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkDatosCliente">
+          <End Type="vozDelEsteBsdModel.cliente" Role="cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Role="datosCliente_dependenciaCedula" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="datosCliente_dependenciaCedula">
               <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
@@ -614,27 +626,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="datosCliente_dependenciaCedula">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="nombreReal" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="apellido" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="cliente" Relationship="vozDelEsteBsdModel.fkDatosCliente" FromRole="datosCliente_dependenciaCedula" ToRole="cliente" />
-        </EntityType>
-        <Association Name="fkDatosCliente">
-          <End Type="vozDelEsteBsdModel.cliente" Role="cliente" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Role="datosCliente_dependenciaCedula" Multiplicity="0..1" />
+        <Association Name="fkUsuario_rol">
+          <End Type="vozDelEsteBsdModel.rol" Role="rol" Multiplicity="0..1" />
+          <End Type="vozDelEsteBsdModel.usuario" Role="usuario" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="cliente">
+            <Principal Role="rol">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="datosCliente_dependenciaCedula">
-              <PropertyRef Name="id" />
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -768,17 +768,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="usuario">
-            <EntityTypeMapping TypeName="vozDelEsteBsdModel.usuario">
-              <MappingFragment StoreEntitySet="usuario">
-                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
-                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="nickname" ColumnName="nickname" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="cliente">
             <EntityTypeMapping TypeName="vozDelEsteBsdModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
@@ -793,6 +782,17 @@
                 <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="nombreReal" ColumnName="nombreReal" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="vozDelEsteBsdModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

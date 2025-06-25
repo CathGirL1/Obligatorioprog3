@@ -63,39 +63,27 @@ namespace obligatorioProg3.Controllers
             return View(usuario);
         }
 
-        // GET: usuarios/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            usuario usuario = db.usuario.Find(id);
-            if (usuario == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.id_rol = new SelectList(db.rol, "id", "nombre", usuario.id_rol);
-            ViewBag.id = new SelectList(db.cliente, "id", "id", usuario.id);
-            return View(usuario);
-        }
-
         // POST: usuarios/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nickname,email,contrasenia,id_rol")] usuario usuario)
+        public ActionResult Edit(int id, FormCollection form)
         {
-            if (ModelState.IsValid)
+            var usuario = db.usuario.Find(id);
+            if (usuario == null)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
-            ViewBag.id_rol = new SelectList(db.rol, "id", "nombre", usuario.id_rol);
-            ViewBag.id = new SelectList(db.cliente, "id", "id", usuario.id);
-            return View(usuario);
+
+            usuario.nickname = form["nickname"];
+            usuario.email = form["email"];
+            usuario.contrasenia = form["contrasenia"];
+
+            db.Entry(usuario).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: usuarios/Delete/5

@@ -47,7 +47,7 @@
             </td>
             <td>
                 <!-- Edicion de usuario-->
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
 
 
                 <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
@@ -58,49 +58,32 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
                             </div>
                             <div class="modal-body">
-                                <!--  cuerpo de modal para editar a corregir, no probar porque hace null los datos del usuario que se quiere editar
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.AntiForgeryToken()
-
-                                    <div class="form-horizontal">
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        @Html.HiddenFor(modelItem => item.id)
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(modelItem => item.nickname, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(modelItem => item.nickname, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => item.nickname, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(modelItem => item.email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(modelItem => item.email, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => item.email, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(modelItem => item.contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(modelItem => item.contrasenia, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(modelItem => item.contrasenia, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                    -->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 
                                 <form action="@Url.Action("Edit", "usuarios", new { id = item.id })" method="post">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                                    <input type="hidden" name="id" value="@item.id" />
+
+                                    <div class="form-group mb-2">
+                                        <label for="nickname_@item.id">Nickname</label>
+                                        <input type="text" class="form-control" id="nickname_@item.id" name="nickname" value="@item.nickname" />
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="email_@item.id">Email</label>
+                                        <input type="email" class="form-control" id="email_@item.id" name="email" value="@item.email" />
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="contrasenia_@item.id">Contraseña</label>
+                                        <input type="password" class="form-control" id="contrasenia_@item.id" name="contrasenia" value="@item.contrasenia" />
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                    </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

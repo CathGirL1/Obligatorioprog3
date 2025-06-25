@@ -35,8 +35,8 @@ namespace obligatorioProg3.Models
         public virtual DbSet<programa> programa { get; set; }
         public virtual DbSet<rol> rol { get; set; }
         public virtual DbSet<comentario> comentario { get; set; }
-        public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<cliente> cliente { get; set; }
         public virtual DbSet<datosCliente_dependenciaCedula> datosCliente_dependenciaCedula { get; set; }
+        public virtual DbSet<usuario> usuario { get; set; }
     }
 }

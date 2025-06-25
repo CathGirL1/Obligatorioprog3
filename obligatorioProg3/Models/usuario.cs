@@ -20,7 +20,7 @@ namespace obligatorioProg3.Models
         public string contrasenia { get; set; }
         public Nullable<int> id_rol { get; set; }
     
-        public virtual rol rol { get; set; }
         public virtual cliente cliente { get; set; }
+        public virtual rol rol { get; set; }
     }
 }

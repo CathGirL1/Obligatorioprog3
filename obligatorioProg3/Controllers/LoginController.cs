@@ -16,6 +16,8 @@ namespace obligatorioProg3.Controllers
             return View();
         }
 
+
+        // POST: Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(usuario model)
