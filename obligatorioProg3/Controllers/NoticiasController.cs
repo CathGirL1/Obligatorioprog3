@@ -14,6 +14,17 @@ namespace obligatorioProg3.Controllers
     {
         private vozDelEsteBsdEntities db = new vozDelEsteBsdEntities();
 
+        private bool usuarioTieneElPermisoSiONo()
+        {
+            if (Session["id_rol"] == null) {
+                return false; 
+            }
+
+            int id_Rol = (int)(Session["id_rol"]);
+
+            return true;
+        }
+
         // GET: Noticias
         public ActionResult Index()
         {
@@ -25,12 +36,14 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             noticia noticia = db.noticia.Find(id);
             if (noticia == null)
             {
-                return HttpNotFound();
+                // se pasa mensaje al ViewBag para mostrar en la vista Edit
+                ViewBag.ErrorMessage = "La noticia que buscás no existe.";
+                return View(new noticia()); // se paasa un modelo vacío para que no falle la vista
             }
             return View(noticia);
         }
@@ -48,6 +61,7 @@ namespace obligatorioProg3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo,contenido,fechaPublicacion,imagen")] noticia noticia)
         {
+
             if (ModelState.IsValid)
             {
                 db.noticia.Add(noticia);
@@ -63,12 +77,14 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             noticia noticia = db.noticia.Find(id);
             if (noticia == null)
             {
-                return HttpNotFound();
+                // se pasa mensaje al ViewBag para mostrar en la vista Edit
+                ViewBag.ErrorMessage = "La noticia que quieres editar no existe.";
+                return View(new noticia()); // se paasa un modelo vacío para que no falle la vista
             }
             return View(noticia);
         }
@@ -86,6 +102,8 @@ namespace obligatorioProg3.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
+
             return View(noticia);
         }
 
@@ -94,12 +112,14 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             noticia noticia = db.noticia.Find(id);
             if (noticia == null)
             {
-                return HttpNotFound();
+                // se pasa mensaje al ViewBag para mostrar en la vista Edit
+                ViewBag.ErrorMessage = "La noticia que quieres eliminar no existe.";
+                return View(new noticia()); // se paasa un modelo vacío para que no falle la vista
             }
             return View(noticia);
         }
