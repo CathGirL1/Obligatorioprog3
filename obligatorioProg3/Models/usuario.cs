@@ -11,12 +11,22 @@ namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         public int id { get; set; }
         public string nickname { get; set; }
+
+        [Required(ErrorMessage = "Se debe rellenar este campo")]
+        [EmailAddress(ErrorMessage = "El formato del email es inválido.")]
+        [Display(Name = "Correo electrónico")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "Se debe rellenar este campo")]
+        [DataType(DataType.Password)]
+        [StringLength(16, ErrorMessage = "La contraseña debe tener entre 8 y 16 caracteres", MinimumLength = 8)]
+        [Display(Name = "Contraseña")]
         public string contrasenia { get; set; }
         public Nullable<int> id_rol { get; set; }
     

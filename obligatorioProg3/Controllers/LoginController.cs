@@ -34,7 +34,6 @@ namespace obligatorioProg3.Controllers
             Session["IdUsuario"] = user.id;
             Session["Nickname"] = user.nickname;
             Session["Email"] = user.email;
-            Session["Contrasenia"] = user.contrasenia;
             Session["IdRol"] = user.id_rol;
 
                 return RedirectToAction("Index", "Home");

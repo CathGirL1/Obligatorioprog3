@@ -46,7 +46,7 @@ namespace obligatorioProg3.Controllers
             cliente nuevoCliente = new cliente
             {
                 id = nuevoUsuario.id, // Asignar el id del usuario al cliente
-                cedula = model.Cedula
+                cedula =  model.Cedula
             };
             db.cliente.Add(nuevoCliente);
             db.SaveChanges();
