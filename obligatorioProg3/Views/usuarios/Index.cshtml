@@ -1,0 +1,134 @@
+﻿@model IEnumerable<obligatorioProg3.Models.usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center mt-5">Gestion de usuarios</h2>
+
+<div class="table-responsive-lg">
+    <table class="table table-primary table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contrasenia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente.id)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contrasenia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rol.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                <!-- Edicion de usuario-->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+
+
+                <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de usuario</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form action="@Url.Action("Edit", "usuarios", new { id = item.id })" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@item.id" />
+
+                                    <div class="form-group mb-2">
+                                        <label for="nickname_@item.id">Nickname</label>
+                                        <input type="text" class="form-control" id="nickname_@item.id" name="nickname" value="@item.nickname" />
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="email_@item.id">Email</label>
+                                        <input type="email" class="form-control" id="email_@item.id" name="email" value="@item.email" />
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="contrasenia_@item.id">Contraseña</label>
+                                        <input type="password" class="form-control" id="contrasenia_@item.id" name="contrasenia" value="@item.contrasenia" />
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Eliminacion de usuario-->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
+
+
+                <div class="modal fade" id="borrarModal_@item.id" tabindex="-1" aria-labelledby="borrarModalLabel_@item.id" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="borrarModalLabel_@item.id">Borrar usuario</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Estás seguro que deseas eliminar al usuario <strong>@item.nickname</strong> con ID <strong>@item.id</strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                <form action="@Url.Action("Delete", "usuarios", new { id = item.id })" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-primary">Sí</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+
+    </table>
+</div>
+
+<style>
+    html, body{
+        height: 100%;
+        background: linear-gradient(#001f3f, #0e3a89);
+    }
+
+    h2{
+        color: aliceblue
+    }
+</style>

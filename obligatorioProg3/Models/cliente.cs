@@ -24,6 +24,7 @@ namespace obligatorioProg3.Models
         public int cedula { get; set; }
     
         public virtual usuario usuario { get; set; }
+        public virtual datosCliente_dependenciaCedula datosCliente_dependenciaCedula { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comentario> comentario { get; set; }
     }

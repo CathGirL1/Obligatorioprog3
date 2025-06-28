@@ -46,7 +46,7 @@ namespace obligatorioProg3.Controllers
             cliente nuevoCliente = new cliente
             {
                 id = nuevoUsuario.id, // Asignar el id del usuario al cliente
-                cedula = model.Cedula
+                cedula =  model.Cedula
             };
             db.cliente.Add(nuevoCliente);
             db.SaveChanges();
@@ -54,7 +54,7 @@ namespace obligatorioProg3.Controllers
             // Crear datos dependientes
             var datos = new datosCliente_dependenciaCedula
             {
-                cedula = model.Cedula,
+                id = nuevoUsuario.id,
                 nombreReal = model.NombreReal,
                 apellido = model.Apellido,
                 fechaNacimiento = model.FechaNacimiento,

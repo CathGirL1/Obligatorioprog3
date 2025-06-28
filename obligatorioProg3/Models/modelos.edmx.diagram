@@ -19,13 +19,14 @@
         <AssociationConnector Association="vozDelEsteBsdModel.programa_patrocinador" ManuallyRouted="false" />
         <AssociationConnector Association="vozDelEsteBsdModel.rol_permiso" ManuallyRouted="false" />
         <EntityTypeShape EntityType="vozDelEsteBsdModel.comentario" Width="1.5" PointX="16.75" PointY="2.625" />
-        <EntityTypeShape EntityType="vozDelEsteBsdModel.usuario" Width="1.5" PointX="12.25" PointY="1" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkIdPrograma" />
-        <AssociationConnector Association="vozDelEsteBsdModel.fkUsuario_rol" />
-        <EntityTypeShape EntityType="vozDelEsteBsdModel.cliente" Width="1.5" PointX="14.5" PointY="1.25" />
-        <EntityTypeShape EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.cliente" Width="1.5" PointX="14.5" PointY="1.625" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.datosCliente_dependenciaCedula" Width="1.5" PointX="16.75" PointY="8" />
+        <EntityTypeShape EntityType="vozDelEsteBsdModel.usuario" Width="1.5" PointX="12.25" PointY="0.75" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkCliente_Usuario" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkDatosCliente" />
         <AssociationConnector Association="vozDelEsteBsdModel.fkIdCliente" />
+        <AssociationConnector Association="vozDelEsteBsdModel.fkUsuario_rol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,9 +14,11 @@ namespace obligatorioProg3.Models
     
     public partial class datosCliente_dependenciaCedula
     {
-        public int cedula { get; set; }
+        public int id { get; set; }
         public string nombreReal { get; set; }
         public string apellido { get; set; }
         public System.DateTime fechaNacimiento { get; set; }
+    
+        public virtual cliente cliente { get; set; }
     }
 }

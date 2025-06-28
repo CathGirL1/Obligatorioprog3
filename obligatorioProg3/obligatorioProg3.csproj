@@ -166,6 +166,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
+    <Compile Include="Controllers\usuariosController.cs" />
+    <Compile Include="CustomValidations\ValidacionCedulaUruguaya.cs" />
     <Compile Include="Models\cliente.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
@@ -300,8 +302,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Programas\Create.cshtml" />
     <Content Include="Views\Programas\Delete.cshtml" />
@@ -330,6 +330,9 @@
     <Content Include="Views\Noticias\Details.cshtml" />
     <Content Include="Views\Noticias\Edit.cshtml" />
     <Content Include="Views\Noticias\Index.cshtml" />
+    <Content Include="Views\usuarios\Delete.cshtml" />
+    <Content Include="Views\usuarios\Edit.cshtml" />
+    <Content Include="Views\usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

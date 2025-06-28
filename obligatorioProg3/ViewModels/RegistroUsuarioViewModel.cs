@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using obligatorioProg3.CustomValidations;
 
 namespace obligatorioProg3.ViewModels
 {
@@ -24,7 +25,8 @@ namespace obligatorioProg3.ViewModels
         public string Contraseña { get; set; }
 
         [Required(ErrorMessage = "Se debe rellenar este campo")]
-        [Display(Name = "Cédula")]
+        [Display(Name = "Cédula (Sin puntos ni guiones)")]
+        [ValidacionCedulaUruguaya]
         public int Cedula { get; set; }
 
         [Required(ErrorMessage = "Se debe rellenar este campo")]
