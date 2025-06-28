@@ -9,7 +9,7 @@
     @RenderSection("styles", required: false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="@(ViewContext.RouteData.Values["controller"].ToString().Equals("Noticias") ? "noticias-background" : "")">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark custom-navbar">
         <div class="container">
             <a href="@Url.Action("Index", "Home")" class="navbar-brand align-content-md-start">
@@ -25,26 +25,28 @@
                     <li>@Html.ActionLink("Patrocinadores", "Index", "Patrocinadores", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                     <li>@Html.ActionLink("Conductores", "Index", "Conductores", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                     <li>@Html.ActionLink("Programas", "Index", "Programas", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Noticias", "Index", "Noticias", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                 </ul>
-            </div>
 
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1 justify-content-end custom-nav custom-nav">
+                <ul class="navbar-nav justify-content-end custom-nav">
                     <li>@Html.ActionLink("Iniciar sesión", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                     <li>@Html.ActionLink("Registrarse", "CrearUsuario", "Registro", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
                 </ul>
+
             </div>
+
         </div>
     </nav>
 
+    <div class="content-wrapper">
         @RenderBody()
-    <div class="container body-content">
-        @*<footer>
-             <hr />
-
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>*@
     </div>
+
+    <footer class="custom-footer">
+        <hr />
+        <p>Gracias por visitar La Voz del Este</p>
+        <p>&copy; @DateTime.Now.Year</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -62,11 +64,45 @@
         margin: 10px; 
     }
 
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
     .body-content {
         margin: 0;
         padding: 0;
     }
 
+    body.noticias-background {
+        margin: 0;
+        background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970);
+        color: aqua;
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Para q las tablas no se pasen del largo del layout */
+    }
+
+    .navbar-nav {
+        flex-wrap: wrap; /* Para evitar que desborde si el contenido es muy largo en el nav */
+    }
+
+    .custom-footer {
+        background-color: #001f3f;
+        color: aqua;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
 
 
 </style>
