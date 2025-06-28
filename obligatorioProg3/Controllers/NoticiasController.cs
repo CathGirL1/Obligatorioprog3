@@ -14,20 +14,24 @@ namespace obligatorioProg3.Controllers
     {
         private vozDelEsteBsdEntities db = new vozDelEsteBsdEntities();
 
-        private bool usuarioTieneElPermisoSiONo()
+        private bool usuarioTieneAccesoACrudNoticiasSiONo()
         {
-            if (Session["id_rol"] == null) {
-                return false; 
-            }
+            if (Session["IdRol"] == null)
+                return false;
 
-            int id_Rol = (int)(Session["id_rol"]);
+            int id_Rol = (int)Session["IdRol"];
 
-            return true;
+            return id_Rol == 2 || id_Rol == 3;
+
         }
 
         // GET: Noticias
         public ActionResult Index()
         {
+            if (!usuarioTieneAccesoACrudNoticiasSiONo())
+            {
+                return RedirectToAction("Login", "Login"); 
+            }
             return View(db.noticia.ToList());
         }
 
