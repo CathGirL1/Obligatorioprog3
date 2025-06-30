@@ -13,9 +13,6 @@ namespace obligatorioProg3.Controllers
         private vozDelEsteBsdEntities baseDeDatos = new vozDelEsteBsdEntities();
         public ActionResult Index()
         {
-            
-            // noticias precargadas para ir probando 
-
             var noticiasPrecargo = new List<noticia>();
             noticiasPrecargo.Add(new noticia()
             {
