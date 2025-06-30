@@ -1,0 +1,215 @@
+﻿@model IEnumerable<obligatorioProg3.Models.horario_programa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center mt-5">Gestion de horarios de programas</h2>
+
+
+<!-- Creacion de horarios de programa-->
+<button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#crearModal">Crear nuevos horarios</button>
+
+
+<div class="modal fade" id="crearModal" tabindex="-1" aria-labelledby="crearModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="crearModalLabel">Creacion de horarios</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+            </div>
+            <div class="modal-body">
+
+                <form action="@Url.Action("Create", "HorarioProgramas")" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group mb-2">
+                        <label for="idPrograma">id del programa</label>
+                        <select class="form-control" id="idPrograma" name="idPrograma" required>
+                            @foreach (var programa in ViewBag.programas as List<obligatorioProg3.Models.programa>)
+                            {
+                                <option value="@programa.id"> @programa.id- @programa.nombre</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="dia">Dia de la semana</label>
+                        <select class="form-control" id="dia" name="dia" required>
+                            <option value="Lunes"> Lunes</option>
+                            <option value="Martes"> Martes</option>
+                            <option value="Miercoles"> Miercoles</option>
+                            <option value="Jueves"> Jueves</option>
+                            <option value="Viernes"> Viernes</option>
+                            <option value="Sabado"> Sabado</option>
+                            <option value="Domingo"> Domingo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="horaInicio">HoraInicio</label>
+                        <input type="time" class="form-control" id="horaInicio" name="horaInicio" required />
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="horaFinal">Hora Final</label>
+                        <input type="time" class="form-control" id="horaFinal" name="horaFinal" required />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive-lg">
+
+    <table class="table table-primary table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idPrograma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaFinal)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idPrograma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.horaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.horaFinal)
+                </td>
+                <td>
+                    @{
+                        var idModal = $"{item.idPrograma}_{item.dia}_{item.horaInicio.ToString().Replace(":", "").Replace(".", "").Replace(" ", "")}_{item.horaFinal.ToString().Replace(":", "").Replace(".", "").Replace(" ", "")}";
+                    }
+
+                    <!-- Edicion de horarios de programa-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@idModal">Editar</button>
+
+
+                    <div class="modal fade" id="editarModal_@idModal" tabindex="-1" aria-labelledby="editarModalLabel_@idModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editarModalLabel_@idModal">Edicion de horario de programa</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action="@Url.Action("Edit", "HorarioProgramas", new { idPrograma = item.idPrograma, dia = item.dia, horaInicio = item.horaInicio, horaFinal = item.horaFinal})" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group mb-2">
+                                            <label for="idPrograma">id del programa</label>
+                                            <select class="form-control" id="idPrograma" name="idPrograma" value="@item.idPrograma" required>
+                                                @foreach (var programa in ViewBag.programas as List<obligatorioProg3.Models.programa>)
+                                                {
+                                                    <option value="@programa.id"> @programa.id- @programa.nombre</option>
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="dia">Dia de la semana</label>
+                                            <select class="form-control" id="dia" name="dia" value="@item.dia" required>
+                                                <option value="Lunes"> Lunes</option>
+                                                <option value="Martes"> Martes</option>
+                                                <option value="Miercoles"> Miercoles</option>
+                                                <option value="Jueves"> Jueves</option>
+                                                <option value="Viernes"> Viernes</option>
+                                                <option value="Sabado"> Sabado</option>
+                                                <option value="Domingo"> Domingo</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="horaInicio">HoraInicio</label>
+                                            <input type="time" class="form-control" id="horaInicio" name="horaInicio" value="@item.horaInicio" required />
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="horaFinal">Hora Final</label>
+                                            <input type="time" class="form-control" id="horaFinal" name="horaFinal" value="@item.horaFinal" required />
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Eliminacion de horarios de programa-->
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@idModal">Borrar</button>
+
+                    <div class="modal fade" id="borrarModal_@idModal" tabindex="-1" aria-labelledby="borrarModalLabel_@idModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="borrarModalLabel_@idModal">Borrar horario de programa</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Estás seguro que quieres eliminar este horario del programa <strong>@item.idPrograma</strong>?
+                                    <hr />
+                                    <strong>Dia:</strong> @item.dia <br />
+                                    <strong>Hora Inicio:</strong> @item.horaInicio <br />
+                                    <strong>Hora Fin:</strong> @item.horaFinal <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                    <form action="@Url.Action("Delete", "HorarioProgramas", new { idPrograma = item.idPrograma, dia = item.dia, horaInicio = item.horaInicio, horaFinal = item.horaFinal})" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-primary">Sí</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+<style>
+    html, body {
+        height: 100%;
+        background: linear-gradient(#001f3f, #0e3a89);
+    }
+
+    h2 {
+        color: aliceblue
+    }
+</style>

@@ -18,6 +18,7 @@ namespace obligatorioProg3.Controllers
         public ActionResult Index()
         {
             var usuario = db.usuario.Include(u => u.rol).Include(u => u.cliente);
+            ViewBag.Roles = db.rol.ToList();
             return View(usuario.ToList());
         }
 
@@ -79,6 +80,7 @@ namespace obligatorioProg3.Controllers
             usuario.nickname = form["nickname"];
             usuario.email = form["email"];
             usuario.contrasenia = form["contrasenia"];
+            usuario.id_rol = int.Parse(form["id_rol"]);
 
             db.Entry(usuario).State = EntityState.Modified;
             db.SaveChanges();

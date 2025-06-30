@@ -11,34 +11,13 @@ namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class noticia
     {
         public int id { get; set; }
-
-        [Display(Name = "Titulo")] // para que en el encabezado de las noticias en el crud index se vea bien como nombre en vez del nombre de la variable en la vista
-        [Required(ErrorMessage ="El titulo es obligatorio.")]
-        [StringLength(40, ErrorMessage = "El largo del titulo es hasta 40 inclusive." )]
-        [RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "En el titulo solo se aceptan letras con espacios inclusive.")]
         public string titulo { get; set; }
-
-        [Required(ErrorMessage ="El contenido es obligatorio.")]
-        [Display(Name = "Contenido")]
-        [StringLength(500, ErrorMessage = "El largo del contenido es hasta 500 inclusive.")]
-        [RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "En el contenido solo se aceptan letras con espacios inclusive.")]
         public string contenido { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] // para q en la vista la fecha se muestre de formato fecha
-        [Display(Name = "Fecha publicación")]
-        [Required(ErrorMessage = "La fecha es obligatoria.")]
         public System.DateTime fechaPublicacion { get; set; }
-
-        [Required(ErrorMessage = "La URL de la imagen es obligatoria.")]
-        [Url(ErrorMessage = "Debe ser una URL válida.")]
-        [RegularExpression(@"^https?:\/\/.*\.(jpg|jpeg|png|gif)(\?.*)?$", ErrorMessage = "La URL de la imagen debe de ser de tipo (.jpg, .png, .gif, etc).")]
-        [Display(Name = "Imagen")]
         public string imagen { get; set; }
     }
 }

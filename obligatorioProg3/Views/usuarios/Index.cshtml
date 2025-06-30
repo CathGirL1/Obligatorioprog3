@@ -78,6 +78,16 @@
                                         <input type="password" class="form-control" id="contrasenia_@item.id" name="contrasenia" value="@item.contrasenia" />
                                     </div>
 
+                                    <div class="form-group mb-2">
+                                        <label for="rol_@item.id">Rol</label>
+                                        <select class="form-control" id="rol_@item.id" name="id_rol">
+                                            @foreach (var rol in ViewBag.Roles as List<obligatorioProg3.Models.rol>)
+                                            {
+                                                <option value="@rol.id" @(rol.id == item.id_rol ? "selected" : "")>@rol.nombre</option>
+                                            }
+                                        </select>
+                                    </div>
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                         <button type="submit" class="btn btn-primary">Confirmar</button>

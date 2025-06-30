@@ -1,45 +1,173 @@
-﻿ @model IEnumerable<obligatorioProg3.Models.programa>
+﻿@model IEnumerable<obligatorioProg3.Models.programa>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 class="text-center mt-5">Gestion de programas</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagen)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.imagen)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+<!-- Creacion de programa-->
+<button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#crearModal">Crear nuevo programa</button>
 
-</table>
+
+<div class="modal fade" id="crearModal" tabindex="-1" aria-labelledby="crearModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="crearModalLabel">Creacion de programa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+            </div>
+            <div class="modal-body">
+
+                <form action="@Url.Action("Create", "Programas")" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group mb-2">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required />
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="descripcion">Descripcion</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" required />
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="imagen">Imagen</label>
+                        <input type="text" class="form-control" id="imagen" name="imagen" required />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive-lg">
+    <table class="table table-primary table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imagen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    <!-- Edicion de programa-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+
+
+                    <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de programa</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action="@Url.Action("Edit", "Programas", new { id = item.id })" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
+
+                                        <div class="form-group mb-2">
+                                            <label for="nombre_@item.id">Nombre</label>
+                                            <input type="text" class="form-control" id="nombre_@item.id" name="nombre" value="@item.nombre" required />
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="descripcion_@item.id">Descripcion</label>
+                                            <input type="text" class="form-control" id="descripcion_@item.id" name="descripcion" value="@item.descripcion" required />
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="imagen_@item.id">Imagen</label>
+                                            <input type="text" class="form-control" id="imagen_@item.id" name="imagen" value="@item.imagen" required />
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Eliminacion de programa-->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
+
+
+                    <div class="modal fade" id="borrarModal_@item.id" tabindex="-1" aria-labelledby="borrarModalLabel_@item.id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="borrarModalLabel_@item.id">Borrar programa</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Estás seguro que quieres eliminar el programa <strong>@item.nombre</strong> con ID <strong>@item.id</strong>?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+                                    <form action="@Url.Action("Delete", "Programas", new { id = item.id })" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-primary">Sí</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+<style>
+    html, body {
+        height: 100%;
+        background: linear-gradient(#001f3f, #0e3a89);
+    }
+
+    h2 {
+        color: aliceblue
+    }
+</style>
+
