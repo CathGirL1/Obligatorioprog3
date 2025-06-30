@@ -80,7 +80,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.titulo, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
                         <div class="text-center">
-                            @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;" } })
+                            @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;", placeholder = "un nombre para la noticia" } })
                             @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-darkslateblue" })
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.contenido, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
                         <div class="text-center">
-                            @Html.EditorFor(model => model.contenido, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;" } })
+                            @Html.EditorFor(model => model.contenido, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;", placeholder = "un contexto o acontecimiento" } })
                             @Html.ValidationMessageFor(model => model.contenido, "", new { @class = "text-darkslateblue" })
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.fechaPublicacion, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
                         <div class="text-center">
-                            @Html.EditorFor(model => model.fechaPublicacion, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;", @type = "text" } }) @*predeterminadamente el servidor web o el navegador valora la fecha antes de inluso enviar el formulario, y en caso de q la fecha no sea de buen formato lanza un mensaje en ingles y no el personalizado entonces se pone type text para que no me valide el campo antes de enviarlo*@
+                            @Html.EditorFor(model => model.fechaPublicacion, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;", @type = "text", placeholder = "año-mes-dia con guiones o barras" } }) 
                             @Html.ValidationMessageFor(model => model.fechaPublicacion, "", new { @class = "text-darkslateblue" })
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
                         <div class="text-center">
-                            @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;" } })
+                            @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center", style = "color: black;", placeholder = "una dirrecion o enlace de imagen" } })
                             @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "text-darkslateblue" })
                         </div>
                     </div>
