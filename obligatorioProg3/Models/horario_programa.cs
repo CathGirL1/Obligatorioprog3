@@ -11,14 +11,21 @@ namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using obligatorioProg3.CustomValidations;
+
     public partial class horario_programa
     {
         public int idPrograma { get; set; }
         public string dia { get; set; }
+
+        [ValidacionHorariosPrograma]
         public System.TimeSpan horaInicio { get; set; }
+
+        [ValidacionHorariosPrograma]
         public System.TimeSpan horaFinal { get; set; }
     
+
         public virtual programa programa { get; set; }
     }
 }
