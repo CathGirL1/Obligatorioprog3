@@ -23,11 +23,11 @@
                         <div class="d-flex flex-column align-items-center">
 
                             @if (!ViewData.ModelState.IsValid && ViewData.ModelState[""]?.Errors.Count > 0)
-                            {
+                             {
                                 <div class="alert alert-danger" role="alert">
                                     @Html.ValidationSummary(true, "", new { @class = "mb-0" })
                                 </div>
-                            }
+                             }
 
                             @using (Html.BeginForm())
                             {
