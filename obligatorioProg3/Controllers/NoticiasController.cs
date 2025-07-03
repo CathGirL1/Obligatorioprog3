@@ -23,6 +23,7 @@ namespace obligatorioProg3.Controllers
 
             return id_Rol == 2 || id_Rol == 3;
 
+
         }
 
         // GET: Noticias

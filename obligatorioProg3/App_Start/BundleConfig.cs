@@ -20,7 +20,11 @@ namespace obligatorioProg3
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
+<<<<<<< HEAD
                       "~/Scripts/bootstrap.bundle.min.js"));
+=======
+                      "~/Scripts/bootstrap.bundle.js"));
+>>>>>>> featureNoticia
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

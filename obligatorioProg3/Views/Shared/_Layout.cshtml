@@ -22,6 +22,7 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 justify-content-start custom-nav custom-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+<<<<<<< HEAD
 
                     <li class="dropdown">
                         <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,10 +49,32 @@
                     </li>
 
                     <li>@Html.ActionLink("Noticias", "Index", "Noticias", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+=======
+>>>>>>> featureNoticia
                 </ul>
                 
 
+                @{
+                    var idRol = Session["IdRol"]?.ToString();
+                }
+
+                @if (!string.IsNullOrEmpty(idRol) && (idRol == "3" || idRol == "2"))
+                 {
+                    <div class="dropdown">
+                        <button class="btn btn-outline-info dropdown-toggle" type="button" id="gestionesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gestión general
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="gestionesDropdown">
+                            <li>@Html.ActionLink("Gestión de noticias", "Index", "Noticias", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Gestión de patrocinadores", "Index", "Patrocinadores", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Gestión de conductores", "Index", "Conductores", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            <li>@Html.ActionLink("Gestión de programas", "Index", "Programas", new { area = "" }, new { @class = "dropdown-item" })</li>
+                        </ul>
+                    </div>
+                 }
+
                 <ul class="navbar-nav justify-content-end custom-nav">
+<<<<<<< HEAD
                     <li class="dropdown">
                         <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Autenticación
@@ -61,6 +84,10 @@
                             <li>@Html.ActionLink("Registrarse", "CrearUsuario", "Registro", new { area = "" }, new { @class = "dropdown-item" })</li>
                         </ul>
                     </li>
+=======
+                    <li>@Html.ActionLink("Iniciar sesión", "Login", "Login", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Registrarse", "CrearUsuario", "Registro", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+>>>>>>> featureNoticia
                 </ul>
 
             </div>
