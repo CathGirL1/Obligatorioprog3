@@ -65,7 +65,7 @@ namespace obligatorioProg3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo,contenido,fechaPublicacion,imagen")] noticia noticia)
         {
-
+            
             if (ModelState.IsValid)
             {
                 db.noticia.Add(noticia);
