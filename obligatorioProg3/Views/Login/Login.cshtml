@@ -22,15 +22,9 @@
                         <h2 class="card-title text-center mb-4">Iniciar sesión</h2>
                         <div class="d-flex flex-column align-items-center">
 
-<<<<<<< HEAD
-                            @if (!string.IsNullOrEmpty(ViewData.ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage))
-                            {
-                                <div class="alert alert-danger text-center">
-=======
                             @if (!ViewData.ModelState.IsValid && ViewData.ModelState[""]?.Errors.Count > 0)
                              {
                                 <div class="alert alert-danger" role="alert">
->>>>>>> featureNoticia
                                     @Html.ValidationSummary(true, "", new { @class = "mb-0" })
                                 </div>
                              }

@@ -11,38 +11,42 @@ namespace obligatorioProg3.CustomValidations
 {
     public class ValidacionHorariosPrograma : ValidationAttribute
     {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        public override bool IsValid(object value)
         {
-            var horarioPrograma = (horario_programa)validationContext.ObjectInstance;
-            string diaElegido = horarioPrograma.dia;
+            var horarioPrograma = HttpContext.Current?.Request;
 
-            if (value == null || horarioPrograma == null || string.IsNullOrEmpty(diaElegido))
-            {
-                return new ValidationResult("El valor proporcionado no es válido.");
-            }
+            string diaElegido = horarioPrograma["dia"];
+            string idProgramaStr = horarioPrograma["idPrograma"];
+
+            if (value == null || string.IsNullOrEmpty(diaElegido))  return false;
 
             TimeSpan horaElegida = (TimeSpan)value;
+            int idPrograma = 0;
+
+            if (!string.IsNullOrEmpty(idProgramaStr)) 
+            {
+                idPrograma = int.Parse(idProgramaStr);
+            }
 
             using (var db = new vozDelEsteBsdEntities())
             {
-                List<horario_programa> horariosExistentesDiaElegido = db.horario_programa
-                    .Where(h => h.dia == diaElegido).ToList();
+                var horariosExistentesDiaElegido = db.horario_programa.Where(h => h.dia == diaElegido && h.idPrograma != idPrograma).ToList(); //para evitar errores al editar un horario de un programa que ya existe, se excluye el id del programa que se está editando
 
-                foreach (var horarios in horariosExistentesDiaElegido)
+                foreach (var horario in horariosExistentesDiaElegido)
                 {
-                    if (horaElegida > horarios.horaInicio && horaElegida < horarios.horaFinal)
+                    if (horaElegida > horario.horaInicio && horaElegida < horario.horaFinal)
                     {
-                        return new ValidationResult("La hora elegida está dentro de un rango existente.");
+                        return false;
                     }
                 }
             }
 
-            return ValidationResult.Success; // La hora elegida no está en conflicto con los horarios existentes
+            return true;
         }
 
         public override string FormatErrorMessage(string name)
         {
-            return "No se pueden agregar horas que estén entre otras horas de este mismo día.";
+            return "No se pueden agregar horas que estén entre otras horas de este mismo día";
         }
     }
 }

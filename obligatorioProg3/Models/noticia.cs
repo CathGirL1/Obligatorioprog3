@@ -11,13 +11,12 @@ namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class noticia
     {
         public int id { get; set; }
-<<<<<<< HEAD
-        public string titulo { get; set; }
-=======
+
 
         [Display(Name = "Titulo")] // para que en el encabezado de las noticias en el crud index se vea bien como nombre en vez del nombre de la variable en la vista
         [Required(ErrorMessage ="El titulo es obligatorio.")]
@@ -29,7 +28,7 @@ namespace obligatorioProg3.Models
         [Display(Name = "Contenido")]
         [StringLength(500, ErrorMessage = "El largo del contenido es hasta 500 inclusive.")]
         //[RegularExpression(@"^[a-zA-Z\s]*$", ErrorMessage = "En el contenido solo se aceptan letras con espacios inclusive.")] aviso que no iria por que en el contenido puede haber un contexto que se use una direccion como ruta 39 o un año
->>>>>>> featureNoticia
+
         public string contenido { get; set; }
         public System.DateTime fechaPublicacion { get; set; }
         public string imagen { get; set; }

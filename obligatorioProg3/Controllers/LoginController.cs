@@ -44,5 +44,13 @@ namespace obligatorioProg3.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Login");
+        }
+
+
     }
 }
