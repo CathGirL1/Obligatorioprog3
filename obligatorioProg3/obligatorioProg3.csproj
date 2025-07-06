@@ -166,6 +166,7 @@
     <Compile Include="Controllers\HorarioProgramasController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
+    <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="CustomValidations\ValidacionCedulaUruguaya.cs" />
@@ -340,6 +341,7 @@
     <Content Include="Views\HorarioProgramas\Details.cshtml" />
     <Content Include="Views\HorarioProgramas\Edit.cshtml" />
     <Content Include="Views\HorarioProgramas\Index.cshtml" />
+    <Content Include="Views\Permisos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -33,6 +33,10 @@ namespace obligatorioProg3.Controllers
             {
                 return RedirectToAction("Login", "Login"); 
             }
+            ViewBag.CrearNoticia = db.permiso.Where(p => p.id == 22).FirstOrDefault();
+            ViewBag.EditarNoticia = db.permiso.Where(p => p.id == 23).FirstOrDefault();
+            ViewBag.BorrarNoticia = db.permiso.Where(p => p.id == 24).FirstOrDefault();
+
             return View(db.noticia.ToList());
         }
 

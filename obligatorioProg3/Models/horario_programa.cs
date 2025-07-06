@@ -25,7 +25,6 @@ namespace obligatorioProg3.Models
         [ValidacionHorariosPrograma]
         public System.TimeSpan horaFinal { get; set; }
     
-
         public virtual programa programa { get; set; }
     }
 }

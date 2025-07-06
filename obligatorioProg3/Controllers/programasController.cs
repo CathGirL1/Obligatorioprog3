@@ -18,6 +18,9 @@ namespace obligatorioProg3.Controllers
         // GET: programas
         public ActionResult Index()
         {
+            ViewBag.CrearPrograma = db.permiso.Where(p => p.id == 9).FirstOrDefault();
+            ViewBag.EditarPrograma = db.permiso.Where(p => p.id == 10).FirstOrDefault();
+            ViewBag.BorrarPrograma = db.permiso.Where(p => p.id == 11).FirstOrDefault();
             return View(db.programa.ToList());
         }
 

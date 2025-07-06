@@ -19,6 +19,10 @@ namespace obligatorioProg3.Controllers
         {
             var horario_programa = db.horario_programa.Include(h => h.programa);
             ViewBag.programas = db.programa.ToList();
+
+            ViewBag.CrearHorarioPrograma = db.permiso.Where(p => p.id == 9).FirstOrDefault();
+            ViewBag.EditarHorarioPrograma = db.permiso.Where(p => p.id == 10).FirstOrDefault();
+            ViewBag.BorrarHorarioPrograma = db.permiso.Where(p => p.id == 11).FirstOrDefault();
             return View(horario_programa.ToList());
         }
 

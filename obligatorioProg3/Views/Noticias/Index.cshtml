@@ -91,7 +91,14 @@
         <h2 class="titulo-gestion">Gestión de noticias</h2>
         <hr class="hr-custom" />
 
-        <a href="@Url.Action("Create")" class="btn btn-outline-botonCrear mb-3 ms-5">Crear nueva noticia</a>
+        @{
+            var permisoCrear = ViewBag.CrearNoticia as obligatorioProg3.Models.permiso;
+        }
+        @if (permisoCrear.estado == true)
+        {
+            <a href="@Url.Action("Create")" class="btn btn-outline-botonCrear mb-3 ms-5">Crear nueva noticia</a>
+        }
+
         <div class="table-responsive">
             <table class="table table-bordered table-striped tabla-custom">
 
@@ -119,7 +126,7 @@
 
                 <tbody>
                     @foreach (var item in Model)
-                     {
+                    {
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.titulo)
@@ -134,13 +141,28 @@
                                 @Html.DisplayFor(modelItem => item.imagen)
                             </td>
                             <td>
-                                <a href="@Url.Action("Edit", "Noticias", new { id = item.id })" class="btn btn-outline-botonEditar mb-3">Editar</a>
+                                @{
+                                    var permisoEditar = ViewBag.EditarNoticia as obligatorioProg3.Models.permiso;
+                                }
+                                @if (permisoEditar.estado == true)
+                                {
+                                    <a href="@Url.Action("Edit", "Noticias", new { id = item.id })" class="btn btn-outline-botonEditar mb-3">Editar</a>
+                                }
+
                                 <a href="@Url.Action("Details", "Noticias", new { id = item.id })" class="btn btn-outline-botonDetalle mb-3">Detalles</a>
-                                <a href="@Url.Action("Delete", "Noticias", new { id = item.id })" class="btn btn-outline-botonEliminar mb-3">Eliminar</a>
+
+                                @{
+                                    var permisoBorrar = ViewBag.BorrarNoticia as obligatorioProg3.Models.permiso;
+                                }
+                                @if (permisoBorrar.estado == true)
+                                {
+                                    <a href="@Url.Action("Delete", "Noticias", new { id = item.id })" class="btn btn-outline-botonEliminar mb-3">Eliminar</a>
+                                }
+
                             </td>
 
                         </tr>
-                     }
+                    }
                 </tbody>
 
 

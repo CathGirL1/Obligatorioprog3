@@ -9,7 +9,14 @@
 
 
 <!-- Creacion de programa-->
-<button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#crearModal">Crear nuevo programa</button>
+@{
+    var permisoCrear = ViewBag.CrearPrograma as obligatorioProg3.Models.permiso;
+}
+@if (permisoCrear.estado == true)
+{
+    <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#crearModal">Crear nuevo programa</button>
+}
+
 
 
 <div class="modal fade" id="crearModal" tabindex="-1" aria-labelledby="crearModalLabel" aria-hidden="true">
@@ -84,7 +91,14 @@
                 </td>
                 <td>
                     <!-- Edicion de programa-->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+                    @{
+                        var permisoEditar = ViewBag.EditarPrograma as obligatorioProg3.Models.permiso;
+                    }
+                    @if (permisoEditar.estado == true)
+                    {
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+                    }
+
 
 
                     <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
@@ -128,7 +142,14 @@
 
 
                     <!-- Eliminacion de programa-->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
+                    @{
+                        var permisoBorrar = ViewBag.BorrarPrograma as obligatorioProg3.Models.permiso;
+                    }
+                    @if (permisoBorrar.estado == true)
+                    {
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
+                    }
+                    
 
 
                     <div class="modal fade" id="borrarModal_@item.id" tabindex="-1" aria-labelledby="borrarModalLabel_@item.id" aria-hidden="true">

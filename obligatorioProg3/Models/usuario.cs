@@ -11,12 +11,19 @@ namespace obligatorioProg3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         public int id { get; set; }
         public string nickname { get; set; }
+
+        [Required(ErrorMessage = "El campo email es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El formato del email es inválido.")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "El campo contraseña es obligatorio.")]
+        [DataType(DataType.Password)]
         public string contrasenia { get; set; }
         public Nullable<int> id_rol { get; set; }
     

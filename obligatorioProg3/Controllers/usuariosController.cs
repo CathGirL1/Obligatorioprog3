@@ -19,6 +19,9 @@ namespace obligatorioProg3.Controllers
         {
             var usuario = db.usuario.Include(u => u.rol).Include(u => u.cliente);
             ViewBag.Roles = db.rol.ToList();
+
+            ViewBag.EditarUsuario = db.permiso.Where(p => p.id == 29).FirstOrDefault();
+            ViewBag.BorrarUsuario = db.permiso.Where(p => p.id == 30).FirstOrDefault();
             return View(usuario.ToList());
         }
 

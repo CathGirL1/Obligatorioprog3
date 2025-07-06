@@ -47,7 +47,13 @@
             </td>
             <td>
                 <!-- Edicion de usuario-->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+                @{
+                    var permisoEditar = ViewBag.EditarUsuario as obligatorioProg3.Models.permiso;
+                }
+                @if (permisoEditar.estado == true)
+                {
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar</button>
+                }
 
 
                 <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
@@ -101,8 +107,13 @@
 
 
                 <!-- Eliminacion de usuario-->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
-
+                @{
+                    var permisoBorrar = ViewBag.BorrarUsuario as obligatorioProg3.Models.permiso;
+                }
+                @if (permisoBorrar.estado == true)
+                {
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@item.id">Borrar</button>
+                }
 
                 <div class="modal fade" id="borrarModal_@item.id" tabindex="-1" aria-labelledby="borrarModalLabel_@item.id" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">

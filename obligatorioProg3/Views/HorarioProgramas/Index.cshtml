@@ -9,7 +9,13 @@
 
 
 <!-- Creacion de horarios de programa-->
-<button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#crearModal">Crear nuevos horarios</button>
+@{
+    var permisoCrear = ViewBag.CrearHorarioPrograma as obligatorioProg3.Models.permiso;
+}
+@if (permisoCrear.estado == true)
+{
+    <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#crearModal">Crear nuevos horarios</button>
+}
 
 
 <div class="modal fade" id="crearModal" tabindex="-1" aria-labelledby="crearModalLabel" aria-hidden="true">
@@ -107,7 +113,13 @@
                     }
 
                     <!-- Edicion de horarios de programa-->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@idModal">Editar</button>
+                    @{
+                        var permisoEditar = ViewBag.EditarHorarioPrograma as obligatorioProg3.Models.permiso;
+                    }
+                    @if (permisoEditar.estado == true)
+                    {
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@idModal">Editar</button>
+                    }
 
 
                     <div class="modal fade" id="editarModal_@idModal" tabindex="-1" aria-labelledby="editarModalLabel_@idModal" aria-hidden="true">
@@ -168,7 +180,14 @@
 
                     <!-- Eliminacion de horarios de programa-->
 
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@idModal">Borrar</button>
+                    @{
+                        var permisoBorrar = ViewBag.BorrarHorarioPrograma as obligatorioProg3.Models.permiso;
+                    }
+                    @if (permisoBorrar.estado == true)
+                    {
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal_@idModal">Borrar</button>
+                    }
+
 
                     <div class="modal fade" id="borrarModal_@idModal" tabindex="-1" aria-labelledby="borrarModalLabel_@idModal" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
