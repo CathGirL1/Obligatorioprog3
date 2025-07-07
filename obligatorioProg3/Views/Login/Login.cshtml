@@ -1,0 +1,88 @@
+﻿@model obligatorioProg3.Models.usuario
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Iniciar sesión</h2>
+                        <div class="d-flex flex-column align-items-center">
+
+                            @if (!ViewData.ModelState.IsValid && ViewData.ModelState[""]?.Errors.Count > 0)
+                             {
+                                <div class="alert alert-danger" role="alert">
+                                    @Html.ValidationSummary(true, "", new { @class = "mb-0" })
+                                </div>
+                             }
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="mb-3, text-center, mt-0">
+                                    @Html.LabelFor(m => m.email, new { @class = "form-label", style = "width: 100%; max-width: 400px;" })
+                                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", type = "email", style = "width: 100%; max-width: 400px;" })
+                                    @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger", style = "width: 100%; max-width: 400px;" })
+                                </div>
+
+                                <div class="mb-3, text-center, mt-0">
+                                    @Html.LabelFor(m => m.contrasenia, new { @class = "form-label", style = "width: 100%; max-width: 400px;" })
+                                    @Html.PasswordFor(m => m.contrasenia, new { @class = "form-control", style = "width: 100%; max-width: 400px;" })
+                                    @Html.ValidationMessageFor(m => m.contrasenia, "", new { @class = "text-danger", style = "width: 100%; max-width: 400px;" })
+                                </div>
+
+                                <ul>
+                                    <li>@Html.ActionLink("Entrar como invitado", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("¿Aun no tienes una cuenta? Registrate", "CrearUsuario", "Registro")</li>
+                                </ul>
+
+
+
+                                <div class="d-flex flex-row justify-content-center mt-3">
+                                    <button type="submit" class="btn btn-primary">Siguiente</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+
+</html>
+
+<style>
+    html, body {
+        height: 100%;
+        background: linear-gradient(#001f3f, #0e3a89);
+    }
+
+    ul{
+        margin-top: 20px;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    li{
+        margin: 10px 0;
+        text-align: center;
+    }
+</style>

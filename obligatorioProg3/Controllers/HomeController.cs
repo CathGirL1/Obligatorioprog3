@@ -1,30 +1,21 @@
-﻿using System;
+﻿using obligatorioProg3.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static System.Net.WebRequestMethods;
 
 namespace obligatorioProg3.Controllers
 {
     public class HomeController : Controller
     {
+        private vozDelEsteBsdEntities baseDeDatos = new vozDelEsteBsdEntities();
         public ActionResult Index()
         {
-            return View();
-        }
+            
+            return View(baseDeDatos.noticia.ToList());
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
