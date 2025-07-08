@@ -1,0 +1,57 @@
+﻿@model obligatorioProg3.Models.ClimaAdo
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Clima actual en @Model.City.Name</h2>
+
+    @{
+        var climaActual = Model.List.First(); // Primer bloque de 3 horas como clima actual
+    }
+
+    <!--Clima actual -->
+    <div class="card mb-5 shadow-lg">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-4 text-center">
+                <img src="https://openweathermap.org/img/wn/@(climaActual.Weather[0].Icon + "2x.png")" class="img-fluid" alt="Clima actual" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">@climaActual.Weather[0].Description.ToString()</h4>
+                    <p class="card-text">Temperatura: <strong>@climaActual.Main.Temp</strong> °C</p>
+                    <p class="card-text">Humedad: <strong>@climaActual.Main.Humidity</strong>%</p>
+                    <p class="card-text">
+                        <small class="text-muted">Actualizado: @climaActual.DtTxt.LocalDateTime.ToString("g")</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Pronóstico de los próximos 5 días -->
+    <h3 class="mb-3">Pronóstico de los próximos 5 días</h3>
+
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+        @foreach (var dia in Model.List
+                                .Where(x => x.DtTxt.Hour == 12)
+                                .Take(5))  // Tomamos los pronósticos del mediodía
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm text-center">
+                    <div class="card-header bg-primary text-white">
+                        @dia.DtTxt.ToString("dddd dd/MM", new System.Globalization.CultureInfo("es-ES"))
+                    </div>
+                    <div class="card-body">
+                        <img src="https://openweathermap.org/img/wn/@(dia.Weather[0].Icon + "2x.png")" class="img-fluid mb-2" alt="icono clima">
+                        <h5>@dia.Weather[0].Description.ToString()</h5>
+                        <p class="card-text">Temp: @dia.Main.Temp °C</p>
+                        <p class="card-text">Humedad: @dia.Main.Humidity%</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

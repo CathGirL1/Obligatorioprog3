@@ -163,6 +163,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClimaController.cs" />
     <Compile Include="Controllers\HorarioProgramasController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Models\clima.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Clima\ClimaAdo.cs" />
     <Compile Include="Models\comentario.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
@@ -342,6 +344,7 @@
     <Content Include="Views\HorarioProgramas\Edit.cshtml" />
     <Content Include="Views\HorarioProgramas\Index.cshtml" />
     <Content Include="Views\Permisos\Index.cshtml" />
+    <Content Include="Views\Clima\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
