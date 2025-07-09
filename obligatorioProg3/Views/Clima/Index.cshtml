@@ -15,7 +15,7 @@
     <div class="card mb-5 shadow-lg">
         <div class="row g-0 align-items-center">
             <div class="col-md-4 text-center">
-                <img src="https://openweathermap.org/img/wn/@(climaActual.Weather[0].Icon + "2x.png")" class="img-fluid" alt="Clima actual" />
+                <img src="https://openweathermap.org/img/wn/@(climaActual.Weather[0].Icon + "@2x.png")" class="img-fluid" alt="Clima actual" />
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -23,7 +23,6 @@
                     <p class="card-text">Temperatura: <strong>@climaActual.Main.Temp</strong> °C</p>
                     <p class="card-text">Humedad: <strong>@climaActual.Main.Humidity</strong>%</p>
                     <p class="card-text">
-                        <small class="text-muted">Actualizado: @climaActual.DtTxt.LocalDateTime.ToString("g")</small>
                     </p>
                 </div>
             </div>
@@ -35,16 +34,16 @@
 
     <div class="row row-cols-1 row-cols-md-5 g-4">
         @foreach (var dia in Model.List
-                                .Where(x => x.DtTxt.Hour == 12)
+                                .Where(x => x.DtTxt.Value.ToLocalTime().Hour == 12)
                                 .Take(5))  // Tomamos los pronósticos del mediodía
         {
             <div class="col">
                 <div class="card h-100 shadow-sm text-center">
                     <div class="card-header bg-primary text-white">
-                        @dia.DtTxt.ToString("dddd dd/MM", new System.Globalization.CultureInfo("es-ES"))
+                        @dia.DtTxt.Value.ToLocalTime().ToString("dddd dd/MM", new System.Globalization.CultureInfo("es-ES"))
                     </div>
                     <div class="card-body">
-                        <img src="https://openweathermap.org/img/wn/@(dia.Weather[0].Icon + "2x.png")" class="img-fluid mb-2" alt="icono clima">
+                        <img src="https://openweathermap.org/img/wn/@(dia.Weather[0].Icon + "@2x.png")" class="img-fluid mb-2" alt="icono clima">
                         <h5>@dia.Weather[0].Description.ToString()</h5>
                         <p class="card-text">Temp: @dia.Main.Temp °C</p>
                         <p class="card-text">Humedad: @dia.Main.Humidity%</p>

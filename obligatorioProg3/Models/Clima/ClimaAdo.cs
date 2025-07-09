@@ -28,7 +28,7 @@ namespace obligatorioProg3.Models
         public long? Cnt { get; set; }
 
         [JsonProperty("list", NullValueHandling = NullValueHandling.Ignore)]
-        public List[] List { get; set; }
+        public List<List> List { get; set; }
 
         [JsonProperty("city", NullValueHandling = NullValueHandling.Ignore)]
         public City City { get; set; }
@@ -76,10 +76,10 @@ namespace obligatorioProg3.Models
         public long? Dt { get; set; }
 
         [JsonProperty("main", NullValueHandling = NullValueHandling.Ignore)]
-        public MainClass Main { get; set; }
+        public Main Main { get; set; }
 
         [JsonProperty("weather", NullValueHandling = NullValueHandling.Ignore)]
-        public Weather[] Weather { get; set; }
+        public List<Weather> Weather { get; set; }
 
         [JsonProperty("clouds", NullValueHandling = NullValueHandling.Ignore)]
         public Clouds Clouds { get; set; }
@@ -106,7 +106,7 @@ namespace obligatorioProg3.Models
         public long? All { get; set; }
     }
 
-    public partial class MainClass
+    public partial class Main
     {
         [JsonProperty("temp", NullValueHandling = NullValueHandling.Ignore)]
         public double? Temp { get; set; }
@@ -139,7 +139,7 @@ namespace obligatorioProg3.Models
     public partial class Sys
     {
         [JsonProperty("pod", NullValueHandling = NullValueHandling.Ignore)]
-        public Pod? Pod { get; set; }
+        public string Pod { get; set; }
     }
 
     public partial class Weather
@@ -148,10 +148,10 @@ namespace obligatorioProg3.Models
         public long? Id { get; set; }
 
         [JsonProperty("main", NullValueHandling = NullValueHandling.Ignore)]
-        public MainEnum? Main { get; set; }
+        public string Main { get; set; }
 
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public Description? Description { get; set; }
+        public string Description { get; set; }
 
         [JsonProperty("icon", NullValueHandling = NullValueHandling.Ignore)]
         public string Icon { get; set; }
@@ -168,12 +168,6 @@ namespace obligatorioProg3.Models
         [JsonProperty("gust", NullValueHandling = NullValueHandling.Ignore)]
         public double? Gust { get; set; }
     }
-
-    public enum Pod { D, N };
-
-    public enum Description { AlgoDeNubes, CieloClaro, MuyNuboso, Nubes, NubesDispersas };
-
-    public enum MainEnum { Clear, Clouds };
 
     public partial class ClimaAdo
     {
@@ -193,9 +187,6 @@ namespace obligatorioProg3.Models
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                PodConverter.Singleton,
-                DescriptionConverter.Singleton,
-                MainEnumConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
@@ -230,143 +221,5 @@ namespace obligatorioProg3.Models
         }
 
         public static readonly ParseStringConverter Singleton = new ParseStringConverter();
-    }
-
-    internal class PodConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Pod) || t == typeof(Pod?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "d":
-                    return Pod.D;
-                case "n":
-                    return Pod.N;
-            }
-            throw new Exception("Cannot unmarshal type Pod");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Pod)untypedValue;
-            switch (value)
-            {
-                case Pod.D:
-                    serializer.Serialize(writer, "d");
-                    return;
-                case Pod.N:
-                    serializer.Serialize(writer, "n");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Pod");
-        }
-
-        public static readonly PodConverter Singleton = new PodConverter();
-    }
-
-    internal class DescriptionConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Description) || t == typeof(Description?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "algo de nubes":
-                    return Description.AlgoDeNubes;
-                case "cielo claro":
-                    return Description.CieloClaro;
-                case "muy nuboso":
-                    return Description.MuyNuboso;
-                case "nubes":
-                    return Description.Nubes;
-                case "nubes dispersas":
-                    return Description.NubesDispersas;
-            }
-            throw new Exception("Cannot unmarshal type Description");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Description)untypedValue;
-            switch (value)
-            {
-                case Description.AlgoDeNubes:
-                    serializer.Serialize(writer, "algo de nubes");
-                    return;
-                case Description.CieloClaro:
-                    serializer.Serialize(writer, "cielo claro");
-                    return;
-                case Description.MuyNuboso:
-                    serializer.Serialize(writer, "muy nuboso");
-                    return;
-                case Description.Nubes:
-                    serializer.Serialize(writer, "nubes");
-                    return;
-                case Description.NubesDispersas:
-                    serializer.Serialize(writer, "nubes dispersas");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Description");
-        }
-
-        public static readonly DescriptionConverter Singleton = new DescriptionConverter();
-    }
-
-    internal class MainEnumConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(MainEnum) || t == typeof(MainEnum?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "Clear":
-                    return MainEnum.Clear;
-                case "Clouds":
-                    return MainEnum.Clouds;
-            }
-            throw new Exception("Cannot unmarshal type MainEnum");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (MainEnum)untypedValue;
-            switch (value)
-            {
-                case MainEnum.Clear:
-                    serializer.Serialize(writer, "Clear");
-                    return;
-                case MainEnum.Clouds:
-                    serializer.Serialize(writer, "Clouds");
-                    return;
-            }
-            throw new Exception("Cannot marshal type MainEnum");
-        }
-
-        public static readonly MainEnumConverter Singleton = new MainEnumConverter();
     }
 }
