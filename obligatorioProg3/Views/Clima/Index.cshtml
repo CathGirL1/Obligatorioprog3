@@ -30,7 +30,7 @@
     </div>
 
     <!--Pronóstico de los próximos 5 días -->
-    <h3 class="mb-3">Pronóstico de los próximos 5 días</h3>
+    <h2 class="mb-3">Pronóstico de los próximos 5 días</h2>
 
     <div class="row row-cols-1 row-cols-md-5 g-4">
         @foreach (var dia in Model.List
@@ -53,4 +53,15 @@
         }
     </div>
 </div>
+
+<style>
+    html, body {
+        height: 100%;
+        background: linear-gradient(#001f3f, #0e3a89);
+    }
+
+    h2 {
+        color: aliceblue
+    }
+</style>
 
