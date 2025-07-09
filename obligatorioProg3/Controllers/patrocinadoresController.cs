@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using obligatorioProg3;
+using obligatorioProg3.CustomValidations;
 using obligatorioProg3.Models;
 
 namespace obligatorioProg3.Controllers
@@ -18,6 +19,14 @@ namespace obligatorioProg3.Controllers
         // GET: patrocinadors
         public ActionResult Index()
         {
+            if (!Utilidades.usuarioTieneAccesoACrudSiONo(Session))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            ViewBag.CrearPatrocinador = db.permiso.Where(p => p.id == 19).FirstOrDefault();
+            ViewBag.EditarPatrocinador = db.permiso.Where(p => p.id == 20).FirstOrDefault();
+            ViewBag.BorrarPatrocinador = db.permiso.Where(p => p.id == 21).FirstOrDefault();
+
             return View(db.patrocinador.ToList());
         }
 
@@ -26,12 +35,13 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             patrocinador patrocinador = db.patrocinador.Find(id);
             if (patrocinador == null)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = "El patrocinador que buscás no existe.";
+                return View(new patrocinador());
             }
             return View(patrocinador);
         }
@@ -64,12 +74,13 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             patrocinador patrocinador = db.patrocinador.Find(id);
             if (patrocinador == null)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = "El patrocinador que quieres editar no existe.";
+                return View(new patrocinador());
             }
             return View(patrocinador);
         }
@@ -95,12 +106,13 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             patrocinador patrocinador = db.patrocinador.Find(id);
             if (patrocinador == null)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = "El patrocinador que quieres eliminar no existe.";
+                return View(new patrocinador());
             }
             return View(patrocinador);
         }
