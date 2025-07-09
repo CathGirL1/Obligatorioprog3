@@ -169,6 +169,7 @@
     <Compile Include="Controllers\PermisosController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
+    <Compile Include="CustomValidations\Utilidades.cs" />
     <Compile Include="CustomValidations\ValidacionCedulaUruguaya.cs" />
     <Compile Include="CustomValidations\ValidacionHorariosPrograma.cs" />
     <Compile Include="Models\cliente.cs">

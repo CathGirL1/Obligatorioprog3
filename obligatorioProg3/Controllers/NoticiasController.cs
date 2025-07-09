@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using obligatorioProg3.CustomValidations;
 using obligatorioProg3.Models;
 
 namespace obligatorioProg3.Controllers
@@ -14,22 +15,10 @@ namespace obligatorioProg3.Controllers
     {
         private vozDelEsteBsdEntities db = new vozDelEsteBsdEntities();
 
-        private bool usuarioTieneAccesoACrudNoticiasSiONo()
-        {
-            if (Session["IdRol"] == null)
-                return false;
-
-            int id_Rol = (int)Session["IdRol"];
-
-            return id_Rol == 2 || id_Rol == 3;
-
-
-        }
-
         // GET: Noticias
         public ActionResult Index()
         {
-            if (!usuarioTieneAccesoACrudNoticiasSiONo())
+            if (!Utilidades.usuarioTieneAccesoACrudSiONo(Session))
             {
                 return RedirectToAction("Login", "Login"); 
             }

@@ -4,53 +4,115 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+
+@section Styles{
+
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970);
+            color: aqua;
+            min-height: 100vh;
+        }
+
+        .btn-default {
+            color: mediumaquamarine;
+            background-color: blue;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .btn-default:hover {
+            color: mediumblue;
+            background-color: mediumaquamarine;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        .card-body {
+            border-color: darkblue;
+            background-color: midnightblue;
+            box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.6); /* efecto sombra para los contornos de la cardd */
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            padding: 20px;
+        }
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>patrocinador</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        .form-control {
+            color: aqua;
+            border: 1px solid darkblue;
+            width: 100%;
+        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        .text-darkslateblue {
+            color: darkslateblue;
+            font-weight: bold;
+        }
+    </style>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.plann, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.plann, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.plann, "", new { @class = "text-danger" })
-            </div>
-        </div>
+}
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+<body>
+    <div class="container">
+        <div class="card-body mx-auto my-5">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <br />
+                    <h4 class="text-center text-aqua">Creación de patrocinador</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
+                        <div class="form-group mb-3 text-center">
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center ", style = "color: black;", placeholder = "nombre del patrocinador" } })
+                            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-darkslateblue" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.plann, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
+                        <div class="form-group mb-3 text-center">
+                            @Html.EditorFor(model => model.plann, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center ", style = "color: black;", placeholder = "un plan" } })
+                            @Html.ValidationMessageFor(model => model.plann, "", new { @class = "text-darkslateblue" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "form-label text-aqua text-center d-block" })
+                        <div class="form-group mb-3 text-center">
+                            @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control w-75 mx-auto text-center ", style = "color: black;", placeholder = "una descripcion" } })
+                            @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-darkslateblue" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group mb-3 text-center">
+                            <input type="submit" value="Crear" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+             }
+
+            <div class="mt-3">
+                @Html.ActionLink("← Volver a la lista", "Index", null, new { @class = "btn btn-outline-info" })
             </div>
         </div>
     </div>
-}
+</body>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
 }
+

@@ -4,45 +4,115 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+@section Styles{
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>patrocinador</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970);
+            color: aqua;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+        .card-body {
+            border-color: darkblue;
+            background-color: midnightblue;
+            box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.6); /* efecto sombra para los contornos de la cardd */
+            border-radius: 10px;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </dt>
+        .tabla-personalizada {
+            background-color: darkblue;
+            color: aqua;
+            border: 2px solid aqua;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
+        .tabla-personalizada th {
+            border: 1px solid aqua;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.plann)
-        </dt>
+        .tabla-personalizada td {
+            border: 1px solid aqua;
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.plann)
-        </dd>
+        .tabla-personalizada th {
+            background-color: darkblue;
+        }
 
-    </dl>
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* para scroll (desplazar) suave en móviles */
+        }
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        .btn-default {
+            color: mediumaquamarine;
+            background-color: blue;
+            min-width: 150px;
+            text-align: center;
+        }
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        .btn-default :hover {
+            color: royalblue;
+        }
+    </style>
+
+
+}
+
+<body>
+    <h3>¿Enserio quieres eliminar este patrocinador?</h3>
+    <div class="container mt-5">
+        <div class="card-body">
+            <h4 class="text-center">Eliminación de patrocinador</h4>
+            <hr />
+            <div class="table-responsive">
+                <table class="table tabla-personalizada">
+                    <thead>
+                        <tr>
+                            <th scope="col">Campos</th>
+                            <th scope="col">Valores</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Cédula</th>
+                            <td>@Html.DisplayFor(model => model.nombre)</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>@Html.DisplayFor(model => model.plann)</td>
+                        </tr>
+                        <tr>
+                            <th>Biografía</th>
+                            <td>@Html.DisplayFor(model => model.descripcion)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="form-group mb-3 text-center">
+                        <input type="submit" value="Eliminar" class="btn btn-default" />
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    @Html.ActionLink("← Volver a la lista", "Index", null, new { @class = "btn btn-outline-info" })
+                </div>
+            }
+
         </div>
-    }
-</div>
+
+    </div>
+
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+}

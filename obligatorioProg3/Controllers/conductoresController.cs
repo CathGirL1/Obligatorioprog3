@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using obligatorioProg3;
+using obligatorioProg3.CustomValidations;
 using obligatorioProg3.Models;
 
 namespace obligatorioProg3.Controllers
@@ -18,6 +19,14 @@ namespace obligatorioProg3.Controllers
         // GET: conductores
         public ActionResult Index()
         {
+            if (!Utilidades.usuarioTieneAccesoACrudSiONo(Session))
+            {
+                return RedirectToAction("Login", "Login"); 
+            }
+            ViewBag.CrearConductor = db.permiso.Where(p => p.id == 16).FirstOrDefault(); 
+            ViewBag.EditarConductor = db.permiso.Where(p => p.id == 17).FirstOrDefault();
+            ViewBag.BorrarConductor = db.permiso.Where(p => p.id == 18).FirstOrDefault();
+
             return View(db.conductor.ToList());
         }
 
@@ -26,12 +35,13 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             conductor conductor = db.conductor.Find(id);
             if (conductor == null)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = "El conductor que buscás no existe.";
+                return View(new conductor()); 
             }
             return View(conductor);
         }
@@ -64,12 +74,13 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             conductor conductor = db.conductor.Find(id);
             if (conductor == null)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = "El conductor que quieres editar no existe.";
+                return View(new conductor());
             }
             return View(conductor);
         }
@@ -95,12 +106,13 @@ namespace obligatorioProg3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             conductor conductor = db.conductor.Find(id);
             if (conductor == null)
             {
-                return HttpNotFound();
+                ViewBag.ErrorMessage = "El conductor que quieres eliminar no existe.";
+                return View(new conductor());
             }
             return View(conductor);
         }
