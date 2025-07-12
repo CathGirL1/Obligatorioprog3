@@ -27,9 +27,10 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1 justify-content-start custom-nav custom-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Cotización $", "Index", "Cotizacion", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
 
 
-                    @if(!string.IsNullOrEmpty(idRol) && (idRol == "3"))
+                    @if (!string.IsNullOrEmpty(idRol) && (idRol == "3"))
                     {
                         <li class="dropdown">
                             <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,11 +43,11 @@
                             </ul>
                         </li>
                     }
-                
+
 
 
                     @if (!string.IsNullOrEmpty(idRol) && (idRol == "3" || idRol == "2"))
-                     {
+                    {
                         <li class="dropdown">
                             <button class="btn btn-outline-info dropdown-toggle" type="button" id="gestionesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestión general
@@ -59,7 +60,7 @@
                                 <li>@Html.ActionLink("Gestión de horarios de programas", "Index", "HorarioProgramas", new { area = "" }, new { @class = "dropdown-item" })</li>
                             </ul>
                         </li>
-                     }
+                    }
                 </ul>
 
                 <ul class="navbar-nav justify-content-end custom-nav">

@@ -1,0 +1,101 @@
+﻿@model QuickType.CotizacionAdo
+
+
+
+@section Styles{
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970);
+            color: aqua;
+        }
+
+        .card-body {
+            border-color: darkblue;
+            background-color: midnightblue;
+            box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.6); /* efecto sombra para los contornos de la cardd */
+            border-radius: 10px;
+        }
+
+
+        .tabla-personalizada {
+            background-color: darkblue;
+            color: aqua;
+            border: 2px solid aqua;
+        }
+
+        .tabla-personalizada th {
+            border: 1px solid aqua;
+        }
+
+        .tabla-personalizada td {
+            border: 1px solid aqua;
+        }
+
+        .tabla-personalizada th {
+            background-color: darkblue;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* para scroll (desplazar) suave en móviles */
+        }
+    </style>
+
+}
+
+@{
+    var fechaCotizacion = DateTimeOffset.FromUnixTimeSeconds(Model.Timestamp).LocalDateTime; // obtiene la fecha de la ultima actualizacion de la cotizacion
+}
+
+<body>
+    <div class="container mt-5">
+        <div class="card-body">
+
+            <h4 class="text-center">Detalles de la Cotización</h4>
+            <hr />
+            <div class="table-responsive">
+                <table class="table tabla-personalizada">
+                    <thead>
+                        <tr>
+                            <th scope="col">Campos</th>
+                            <th scope="col">Valores</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><img src="https://flagcdn.com/uy.svg" width="24" /> Moneda Uruguaya</th>
+                            <td>@Model.Quotes["USDUYU"]</td>
+                        </tr>
+                        <tr>
+                            <th><img src="https://flagcdn.com/eu.svg" width="24" /> Moneda Europea</th>
+                            <td>@Model.Quotes["USDEUR"]</td>
+                        </tr>
+                        <tr>
+                            <th><img src="https://flagcdn.com/br.svg" width="24" /> Moneda Brasileña</th>
+                            <td>@Model.Quotes["USDBRL"]</td>
+                        </tr>
+                        <tr>
+                            <th>Ultima actualización</th>
+                            <td>@fechaCotizacion.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-3">
+                @Html.ActionLink("← Volver a la lista", "Index", null, new { @class = "btn btn-outline-info" })
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+
