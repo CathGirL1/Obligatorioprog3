@@ -1,9 +1,9 @@
-﻿
+﻿@model obligatorioProg3.ViewModels.InicioViewModel
+
 @{
     ViewBag.Title = "Home Page";
 }
 
-@model List<obligatorioProg3.Models.noticia>
 
 
 
@@ -87,12 +87,43 @@
 }
 
 <main>
+
     <div class="imagenFondoParaHome">
         <div class="container py-5">
+
+            @if (Model.idPrograma == 0)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    No hay programa en emisión actualmente.
+                </div>
+            }
+            else
+            {
+                <div class="card">
+                    <div class="card-header">
+                        ¡Ahora mismo!
+                    </div>
+                    <img src="@Model.imagenPrograma" class="card-img-top" alt="Imagen del programa actual">
+                    <div class="card-body">
+                        <h5 class="card-title">Programa que suena actualmente: @Model.nombrePrograma</h5>
+                        <p class="card-text">@Model.descripcionPrograma</p>
+                        <hr />
+                        <p class="card-text">Hora de inicio: @Model.horaInicio</p>
+                        <br />
+                        <p class="card-text">Hora de final: @Model.horaFinal</p>
+                        <a href="#" class="btn btn-primary"> Ver mas informacion</a>
+                    </div>
+                </div>
+            }
+
+
+
             <div class="row justify-content-center">
-                @foreach (var noticia in Model)
-                 {  
-                    
+
+
+                @foreach (var noticia in Model.noticias)
+                {
+
 
                     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
                         <div class="card card-custom w-100 mx-1 mx-md-3 mx-lg-4 my-3">
@@ -109,7 +140,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel-@noticia.id">@noticia.titulo</h5>
+                                    <h5 class="modal-title" id="modalLabel@obligatorioProg3.ViewModels.InicioViewModel.idNoticias">@noticia.titulo</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                 </div>
 

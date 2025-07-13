@@ -12,22 +12,25 @@
     }
 
     <!--Clima actual -->
-    <div class="card mb-5 shadow-lg">
-        <div class="row g-0 align-items-center">
-            <div class="col-md-4 text-center">
-                <img src="https://openweathermap.org/img/wn/@(climaActual.Weather[0].Icon + "@2x.png")" class="img-fluid" alt="Clima actual" />
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h4 class="card-title">@climaActual.Weather[0].Description.ToString()</h4>
-                    <p class="card-text">Temperatura: <strong>@climaActual.Main.Temp</strong> °C</p>
-                    <p class="card-text">Humedad: <strong>@climaActual.Main.Humidity</strong>%</p>
-                    <p class="card-text">
-                    </p>
-                </div>
+<div class="card mb-5 shadow-lg">
+    <div class="card-header bg-primary text-white">
+        @climaActual.DtTxt.Value.ToLocalTime().ToString("dddd dd/MM hh:mm", new System.Globalization.CultureInfo("es-ES"))
+    </div>
+    <div class="row g-0 align-items-center">
+        <div class="col-md-4 text-center">
+            <img src="https://openweathermap.org/img/wn/@(climaActual.Weather[0].Icon + "@2x.png")" class="img-fluid" alt="Clima actual" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">@climaActual.Weather[0].Description.ToString()</h4>
+                <p class="card-text">Temperatura: <strong>@climaActual.Main.Temp</strong> °C</p>
+                <p class="card-text">Humedad: <strong>@climaActual.Main.Humidity</strong>%</p>
+                <p class="card-text">
+                </p>
             </div>
         </div>
     </div>
+</div>
 
     <!--Pronóstico de los próximos 5 días -->
     <h2 class="mb-3">Pronóstico de los próximos 5 días</h2>
@@ -40,7 +43,7 @@
             <div class="col">
                 <div class="card h-100 shadow-sm text-center">
                     <div class="card-header bg-primary text-white">
-                        @dia.DtTxt.Value.ToLocalTime().ToString("dddd dd/MM", new System.Globalization.CultureInfo("es-ES"))
+                        @dia.DtTxt.Value.ToLocalTime().ToString("dddd dd/MM hh:mm", new System.Globalization.CultureInfo("es-ES"))
                     </div>
                     <div class="card-body">
                         <img src="https://openweathermap.org/img/wn/@(dia.Weather[0].Icon + "@2x.png")" class="img-fluid mb-2" alt="icono clima">

@@ -10,7 +10,6 @@ using System.Web;
 using System.Web.Mvc;
 using obligatorioProg3.Models.Cotizacion;
 
-
 namespace obligatorioProg3.Controllers
 {
     public class CotizacionController : Controller
