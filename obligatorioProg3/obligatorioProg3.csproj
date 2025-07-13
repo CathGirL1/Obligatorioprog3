@@ -195,6 +195,7 @@
     <Compile Include="Models\cotizacion.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cotizacion\ConexionAdoCotizacion.cs" />
     <Compile Include="Models\Cotizacion\CotizacionAdo.cs" />
     <Compile Include="Models\datosCliente_dependenciaCedula.cs">
       <DependentUpon>modelos.tt</DependentUpon>
