@@ -31,9 +31,6 @@ namespace obligatorioProg3.Controllers
 
             if(user != null)
             {
-            Session["IdUsuario"] = user.id;
-            Session["Nickname"] = user.nickname;
-            Session["Email"] = user.email;
             Session["IdRol"] = user.id_rol;
 
                 return RedirectToAction("Index", "Home");

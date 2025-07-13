@@ -63,6 +63,7 @@ namespace obligatorioProg3.Controllers
             db.datosCliente_dependenciaCedula.Add(datos);
             db.SaveChanges();
 
+            Session["IdRol"] = 1;
             return RedirectToAction("Index", "Home");
         }
     }
