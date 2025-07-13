@@ -239,6 +239,7 @@
     <Compile Include="Models\usuario.cs">
       <DependentUpon>modelos.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\InicioViewModel.cs" />
     <Compile Include="ViewModels\RegistroUsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

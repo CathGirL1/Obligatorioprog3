@@ -10,240 +10,260 @@
 <br />
 
 <h3>Permisos de administradores</h3>
-<table class="table table-primary table-striped m-4">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.Where(permiso => permiso.rol.Any(rol => rol.id == 3)))
-    {
+<div class="table-responsive-lg">
+    <table class="table table-primary table-striped m-4">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
+        @foreach (var item in Model.Where(permiso => permiso.rol.Any(rol => rol.id == 3)))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
 
-            <td>
-                <!-- Edicion de estado de permiso -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar estado</button>
+                <td>
+                    <!-- Edicion de estado de permiso -->
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar estado</button>
 
 
-                <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de estado de permiso</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
-                            </div>
-                            <div class="modal-body">
+                    <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de estado de permiso</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                </div>
+                                <div class="modal-body">
 
-                                <form action="@Url.Action("Edit", "Permisos", new { id = item.id })" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@item.id" />
+                                    <form action="@Url.Action("Edit", "Permisos", new { id = item.id })" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estado" id="activado" value=true checked>
-                                        <label class="form-check-label" for="activado">
-                                            Activado
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estado" id="activado" value=true checked>
+                                            <label class="form-check-label" for="activado">
+                                                Activado
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estado" id="desactivado" value=false>
-                                        <label class="form-check-label" for="desactivado">
-                                            Desactivado
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estado" id="desactivado" value=false>
+                                            <label class="form-check-label" for="desactivado">
+                                                Desactivado
+                                            </label>
+                                        </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                                    </div>
-                                </form>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        </div>
+                                    </form>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
-</table>
 
 
 
 <h3>Permisos de editores</h3>
-<table class="table table-primary table-striped m-4">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.Where(permiso => permiso.rol.Any(rol => rol.id == 2)))
-    {
+<div class="table-responsive-lg">
+    <table class="table table-primary table-striped m-4">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
+        @foreach (var item in Model.Where(permiso => permiso.rol.Any(rol => rol.id == 2)))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
 
-            <td>
-                <!-- Edicion de estado de permiso -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar estado</button>
+                <td>
+                    <!-- Edicion de estado de permiso -->
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar estado</button>
 
 
-                <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de estado de permiso</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
-                            </div>
-                            <div class="modal-body">
+                    <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de estado de permiso</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                </div>
+                                <div class="modal-body">
 
-                                <form action="@Url.Action("Edit", "Permisos", new { id = item.id })" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@item.id" />
+                                    <form action="@Url.Action("Edit", "Permisos", new { id = item.id })" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estado" id="activado" value=true checked>
-                                        <label class="form-check-label" for="activado">
-                                            Activado
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estado" id="activado" value=true checked>
+                                            <label class="form-check-label" for="activado">
+                                                Activado
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estado" id="desactivado" value=false>
-                                        <label class="form-check-label" for="desactivado">
-                                            Desactivado
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estado" id="desactivado" value=false>
+                                            <label class="form-check-label" for="desactivado">
+                                                Desactivado
+                                            </label>
+                                        </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                                    </div>
-                                </form>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        </div>
+                                    </form>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </td>
+                </td>
 
-        </tr>
-    }
+            </tr>
+        }
 
-</table>
+    </table>
+</div>
 
 
 
 <h3>Permisos de clientes</h3>
-<table class="table table-primary table-striped m-4">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.Where(permiso => permiso.rol.Any(rol => rol.id == 1)))
-    {
+<div class="table-responsive-lg">
+    <table class="table table-primary table-striped m-4">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
+        </tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
+        @foreach (var item in Model.Where(permiso => permiso.rol.Any(rol => rol.id == 1)))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
 
-            <td>
-                <!-- Edicion de estado de permiso -->
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar estado</button>
+                <td>
+                    <!-- Edicion de estado de permiso -->
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarModal_@item.id">Editar estado</button>
 
 
-                <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de estado de permiso</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
-                            </div>
-                            <div class="modal-body">
+                    <div class="modal fade" id="editarModal_@item.id" tabindex="-1" aria-labelledby="editarModalLabel_@item.id" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="editarModalLabel_@item.id">Edicion de estado de permiso</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+                                </div>
+                                <div class="modal-body">
 
-                                <form action="@Url.Action("Edit", "Permisos", new { id = item.id })" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@item.id" />
+                                    <form action="@Url.Action("Edit", "Permisos", new { id = item.id })" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@item.id" />
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estado" id="activado" value=true checked>
-                                        <label class="form-check-label" for="activado">
-                                            Activado
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estado" id="activado" value=true checked>
+                                            <label class="form-check-label" for="activado">
+                                                Activado
+                                            </label>
+                                        </div>
 
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="estado" id="desactivado" value=false>
-                                        <label class="form-check-label" for="desactivado">
-                                            Desactivado
-                                        </label>
-                                    </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="estado" id="desactivado" value=false>
+                                            <label class="form-check-label" for="desactivado">
+                                                Desactivado
+                                            </label>
+                                        </div>
 
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                                    </div>
-                                </form>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                        </div>
+                                    </form>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </td>
-        </tr>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<style>
+    html, body {
+        height: 100%;
+        background: linear-gradient(#001f3f, #0e3a89);
     }
 
-</table>
+    h2, h3 {
+        color: aliceblue
+    }
+</style>
