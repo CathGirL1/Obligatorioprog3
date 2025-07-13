@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using obligatorioProg3.Models.Cotizacion;
+
 
 namespace obligatorioProg3.Controllers
 {
@@ -32,7 +34,7 @@ namespace obligatorioProg3.Controllers
 
                 var fechaCotizacion = DateTimeOffset.FromUnixTimeSeconds(cotizacionApi.Timestamp).Date; // para obtener la fecha exact de la ultima cotizacion
 
-                using (var baseDeDatos = new vozDelEsteBsdEntities())
+                using (var baseDeDatos = new ConexionAdoCotizacion())
                 {
                     var cotizaciones = new List<cotizacion>()
                     {
