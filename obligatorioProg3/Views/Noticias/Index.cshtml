@@ -1,0 +1,182 @@
+﻿@model IEnumerable<obligatorioProg3.Models.noticia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@section styles{
+    <style>
+        .btn-outline-botonCrear {
+            color: mediumaquamarine;
+            background-color: blue;
+        }
+
+
+        .btn-outline-botonCrear:hover {
+            color: mediumblue;
+            background-color: mediumaquamarine;
+        }
+
+        .btn-outline-botonEditar {
+            color: blue;
+            background-color: darkslateblue;
+        }
+
+        .btn-outline-botonEditar:hover {
+            color: darkblue;
+            background-color: royalblue;
+        }
+
+        .btn-outline-botonDetalle {
+            color: mediumblue;
+            background-color: lightskyblue;
+        }
+
+        .btn-outline-botonDetalle:hover {
+            color: lightskyblue;
+            background-color: mediumblue;
+        }
+
+        .btn-outline-botonEliminar {
+            color: dodgerblue;
+            background-color: aquamarine;
+        }
+
+        .btn-outline-botonEliminar:hover {
+            color: aquamarine;
+            background-color: dodgerblue;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970); /*color tipo anochecer con azul oscuro*/
+            color: aqua;
+        }
+
+        .tabla-custom {
+            border: 1px solid aqua;
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .tabla-custom th {
+            color: aqua !important; /* predefinidamente boostrap los th y td en el color de la letra lo tiene de negro el important obliga que el color sea asi pasando a boostrap por arriba*/
+        }
+
+        .tabla-custom td {
+            color: aqua !important;
+        }
+
+        .hr-custom {
+            border: none;
+            border-top: 2px solid aqua;
+            margin: 1rem 0;
+        }
+
+        .tabla-custom th {
+            white-space: nowrap; /*sirve para que un texto no se parta en dos lineas es decir ejemplo: la palabra fecha arriba y la palabra publicacion abajo en vez de eso una sola linea la palabra*/
+        }
+    </style>
+
+}
+
+
+
+<body>
+    <div class="container">
+        <br />
+        <h2 class="titulo-gestion">Gestión de noticias</h2>
+        <hr class="hr-custom" />
+
+        @{
+            var permisoCrear = ViewBag.CrearNoticia as obligatorioProg3.Models.permiso;
+        }
+        @if (permisoCrear.estado == true)
+        {
+            <a href="@Url.Action("Create")" class="btn btn-outline-botonCrear mb-3 ms-5">Crear nueva noticia</a>
+        }
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped tabla-custom">
+
+                <thead>
+
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.titulo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.contenido)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fechaPublicacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.imagen)
+                        </th>
+
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.titulo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.contenido)
+                            </td>
+                            <td>
+                                @item.fechaPublicacion.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.imagen)
+                            </td>
+                            <td>
+                                @{
+                                    var permisoEditar = ViewBag.EditarNoticia as obligatorioProg3.Models.permiso;
+                                }
+                                @if (permisoEditar.estado == true)
+                                {
+                                    <a href="@Url.Action("Edit", "Noticias", new { id = item.id })" class="btn btn-outline-botonEditar mb-3">Editar</a>
+                                }
+
+                                <a href="@Url.Action("Details", "Noticias", new { id = item.id })" class="btn btn-outline-botonDetalle mb-3">Detalles</a>
+
+                                @{
+                                    var permisoBorrar = ViewBag.BorrarNoticia as obligatorioProg3.Models.permiso;
+                                }
+                                @if (permisoBorrar.estado == true)
+                                {
+                                    <a href="@Url.Action("Delete", "Noticias", new { id = item.id })" class="btn btn-outline-botonEliminar mb-3">Eliminar</a>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+
+
+    </div>
+
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+}
+

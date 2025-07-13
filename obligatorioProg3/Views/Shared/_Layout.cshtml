@@ -1,40 +1,158 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+<body class="@(ViewContext.RouteData.Values["controller"].ToString().Equals("Noticias") ? "noticias-background" : "")">
+
+    @{ 
+      var idRol = Session["IdRol"]?.ToString();
+    }
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark custom-navbar">
         <div class="container">
-            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand align-content-md-start">
+                <img src="~/Content/Images/logoLaVozDelEste2.png" alt="Logo de Mi App" style="height: 65px;" />
+            </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <ul class="navbar-nav flex-grow-1 justify-content-start custom-nav custom-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Cotización $", "Index", "Cotizacion", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    <li>@Html.ActionLink("Clima", "Index", "Clima", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+
+
+                    @if (!string.IsNullOrEmpty(idRol) && (idRol == "3"))
+                    {
+                        <li class="dropdown">
+                            <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestion de usuarios
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Permisos", "Index", "Permisos", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li><a class="dropdown-item" href="#">Clientes</a></li>
+                            </ul>
+                        </li>
+                     }
+
+
+
+                    @if (!string.IsNullOrEmpty(idRol) && (idRol == "3" || idRol == "2"))
+                    {
+                        <li class="dropdown">
+                            <button class="btn btn-outline-info dropdown-toggle" type="button" id="gestionesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gestión general
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="gestionesDropdown">
+                                <li>@Html.ActionLink("Gestión de noticias", "Index", "Noticias", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Gestión de patrocinadores", "Index", "Patrocinadores", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Gestión de conductores", "Index", "Conductores", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Gestión de programas", "Index", "Programas", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Gestión de horarios de programas", "Index", "HorarioProgramas", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
+
+                <ul class="navbar-nav justify-content-end custom-nav">
+
+                    @if (!string.IsNullOrEmpty(idRol))
+                    {
+                        <li>@Html.ActionLink("Cerrar sesión", "Logout", "Login", new { area = "" }, new { @class = "btn btn-outline-info" })</li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Autenticación
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Iniciar sesión", "Login", "Login", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("Registrarse", "CrearUsuario", "Registro", new { area = "" }, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+
+    <div class="content-wrapper">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
     </div>
+
+    <footer class="custom-footer">
+        <hr />
+        <p>Gracias por visitar La Voz del Este</p>
+        <p>&copy; @DateTime.Now.Year</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<style>
+
+    .custom-navbar {
+        background-color: #001f3f; 
+    }
+
+    .custom-nav li{
+        margin: 10px; 
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .body-content {
+        margin: 0;
+        padding: 0;
+    }
+
+    body.noticias-background {
+        margin: 0;
+        background: linear-gradient(to bottom, #050519, #0b0c28, #0f113d, #191970);
+        color: aqua;
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Para q las tablas no se pasen del largo del layout */
+    }
+
+    .navbar-nav {
+        flex-wrap: wrap; /* Para evitar que desborde si el contenido es muy largo en el nav */
+    }
+
+    .custom-footer {
+        background-color: #001f3f;
+        color: aqua;
+        padding: 10px 0;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    .content-wrapper {
+        flex: 1;
+    }
+
+
+</style>

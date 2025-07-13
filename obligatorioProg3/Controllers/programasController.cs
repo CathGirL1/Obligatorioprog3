@@ -7,16 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using obligatorioProg3;
+using obligatorioProg3.Models;
 
 namespace obligatorioProg3.Controllers
 {
-    public class programasController : Controller
+    public class ProgramasController : Controller
     {
         private vozDelEsteBsdEntities db = new vozDelEsteBsdEntities();
 
         // GET: programas
         public ActionResult Index()
         {
+            ViewBag.CrearPrograma = db.permiso.Where(p => p.id == 9).FirstOrDefault();
+            ViewBag.EditarPrograma = db.permiso.Where(p => p.id == 10).FirstOrDefault();
+            ViewBag.BorrarPrograma = db.permiso.Where(p => p.id == 11).FirstOrDefault();
             return View(db.programa.ToList());
         }
 
@@ -46,8 +50,15 @@ namespace obligatorioProg3.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,descripcion,imagen")] programa programa)
+        public ActionResult Create(FormCollection form)
         {
+            var programa = new programa
+            {
+                nombre = form["nombre"],
+                descripcion = form["descripcion"],
+                imagen = form["imagen"]
+            };
+
             if (ModelState.IsValid)
             {
                 db.programa.Add(programa);
@@ -72,22 +83,30 @@ namespace obligatorioProg3.Controllers
             }
             return View(programa);
         }
-
-        // POST: programas/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,descripcion,imagen")] programa programa)
+        public ActionResult Edit(int id, FormCollection form)
         {
-            if (ModelState.IsValid)
+            var programa = db.programa.Find(id);
+            if (programa == null)
             {
-                db.Entry(programa).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
-            return View(programa);
+
+            programa.nombre = form["nombre"];
+            programa.descripcion = form["descripcion"];
+            programa.imagen = form["imagen"];
+
+            db.Entry(programa).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
+
+
+
+
+
 
         // GET: programas/Delete/5
         public ActionResult Delete(int? id)
@@ -110,9 +129,20 @@ namespace obligatorioProg3.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             programa programa = db.programa.Find(id);
+
+            if (programa == null)
+            {
+                return HttpNotFound();
+            }
+
+            List<horario_programa> horariosProgramaEliminado = db.horario_programa.Where(h => h.idPrograma == id).ToList();
+
+            if(horariosProgramaEliminado.Count != 0) db.horario_programa.RemoveRange(horariosProgramaEliminado);
+
             db.programa.Remove(programa);
             db.SaveChanges();
             return RedirectToAction("Index");
+
         }
 
         protected override void Dispose(bool disposing)
